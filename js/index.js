@@ -82,8 +82,8 @@ function Connect_DB() {
     appId: "1:653667385625:web:a5aed08500de80839f0588",
     measurementId: "G-9SKTRHHSW9"
   };
+
   firebase.initializeApp(firebaseConfig);
-  //dbCYCProfile = firebase.firestore().collection("CheckProfile");
   db = firebase.firestore().collection("CheckProfile");
   dbBootCamp = firebase.firestore().collection("BootCamp");
   dbBootRegister = firebase.firestore().collection("BootRegister");
