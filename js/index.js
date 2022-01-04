@@ -217,6 +217,8 @@ function WaitingPage() {
     snapshot.forEach(doc=> {
       EidBootMember = doc.id;
       xEmpType = doc.data().EmpType;
+      sessionStorage.setItem("EmpID", doc.data().EmpID);
+      sessionStorage.setItem("EmpName", doc.data().EmpName);
       //alert(sessionStorage.getItem("EmpID")+"---"+xEmpType);
       //alert(EidBootCamp);
       //sEmpType = doc.data().EmpType;
