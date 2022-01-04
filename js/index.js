@@ -129,16 +129,12 @@ function CheckRegister() {
       xCheckRegister = 1;
       EidBootRegister = doc.id;
       sDateTime = doc.data().DateTime;
+      sessionStorage.setItem("EmpID", doc.data().EmpID);
+      sessionStorage.setItem("EmpName", doc.data().EmpName);
       sessionStorage.setItem("CheckPass", doc.data().DateTime);
-      //alert(EidBootRegister);
       document.getElementById('OpenBootCamp').style.display='none';
       document.getElementById('myRegister').style.display='none';
       document.getElementById('myTimer').style.display='block';
-      //window.location.href = 'loading.html';
-      //alert(doc.data().EmpName);
-      //EidBootCamp = doc.id;
-      //sCheckOpen = doc.data().CampName;
-      //alert(doc.data().CampName);
     });
     if(EidBootRegister=="") {
       //document.getElementById('OpenBootCamp').style.display='block';
@@ -147,24 +143,14 @@ function CheckRegister() {
     } else {
       WaitingPage();
     }
-  //alert(sEmpType+"---"+EidBootRegister);
-    /*
-    if(sCheckOpen!="") {
-      str += '<div class="btn-t1" style="margin-top:20px;" onclick="CheckData()">เปิดลงทะเบียน '+sCheckOpen+'</div>';
-    } else {
-      str += '<div class="btn-t4" style="margin-top:20px;cursor: default;">ยังไม่เปิดลงทะเบียน</div>';
-    }
-    $("#OpenRound").html(str);  
-    */
-    //OpenForm();
   });
 }
 
 
 
 function CheckData() {
-    document.getElementById('BootCampLoading').style.display='none';
-    document.getElementById('myRegister').style.display='block';
+  document.getElementById('BootCampLoading').style.display='none';
+  document.getElementById('myRegister').style.display='block';
   //alert(sessionStorage.getItem("LineID"));
   //console.log(sessionStorage.getItem("LineID"));
   //dbCYCProfile.where('LineID','==',sessionStorage.getItem("LineID"))
