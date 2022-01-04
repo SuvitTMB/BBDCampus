@@ -100,7 +100,6 @@
 
   async function getUserProfile() {
     const profile = await liff.getProfile();
-    sessionStorage.setItem("LineLogin", profile.userId);
     sessionStorage.setItem("LineID", profile.userId);
     sessionStorage.setItem("LineName", profile.displayName);
     sessionStorage.setItem("LinePicture", profile.pictureUrl);
