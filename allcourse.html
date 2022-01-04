@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>LINE Retail Society</title>
+  <meta charset="utf-8">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+  <!-- End Google Tag Manager -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href='css/ekachon.css' rel="stylesheet" type="text/css">
+  <link href='css/style.css' rel="stylesheet" type="text/css">
+  <link href='css/button.css' rel="stylesheet" type="text/css">
+  <link href='css/w3.css' rel="stylesheet" type="text/css">
+  <link href='css/app.css' rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
+-->
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+  <style type="text/css">
+    .navbar-default .navbar-toggle .icon-bar { background-color: #fff; }
+  </style>
+
+
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background-color: #cacfe2;">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW7HPDW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="loading.html">Retail Society</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="loading.html">หน้าแรก</a></li>
+          <li><a href="allcourse.html">หลักสูตรอบรม</a></li>
+          <li><a href="mycourse.html">หลักสูตรของคุณ</a></li>
+          <!--<li><a href="register.html">ลงทะเบียน</a></li>-->
+          <li><a href="qa.html">Q&A</a></li>
+        </ul>
+      </div> 
+    </div>
+  </nav>
+
+  <main id="main">
+    <section id="team" class="team section-bg">
+      <div class="container" id="CheckLogin">
+        <div class="section-title" data-aos="fade-up" style="margin-top:10px;">
+          <div style="color:#0056ff;font-size:18px;margin-top:-30px;">LINE Retail Society</div>
+          <div style="padding:15px 0px 15px 0px;">
+            <center>
+
+              <div class="btn-t3" style="margin:60px auto 30px auto;width:280px;cursor: default;">หลักสูตรอบรม BBD CAMPUS</div>
+
+              <div style="margin-top:0px;">
+                <center>
+                <div style="max-width:390px; width:100%; margin:10px auto;">
+                  <div class="box-course">
+                    <div style="width:140px;float: left;text-align: center;"><img src="./avatar/v-1.png" width="120"></div>
+                    <div style="width:230px;float: left;">
+                      <div class="text-program">BBD CAMPUS<br>Specialist Program 2022</div>
+                      <div class="btn-t1" style="margin:5px;cursor: default;">หลักสูตร BA/MF Specialist</div>
+                      <div class="btn-t2" style="margin:5px;cursor: default;">หลักสูตร HL/CYH Specialist</div>
+                      <div class="btn-t3" style="margin:5px;cursor: default;">หลักสูตร CYC/CYB Specialist</div>
+                    </div>
+                  </div>
+                  <div class="clr"></div>
+
+
+                  <div class="btn-t3" style="margin:40px auto 30px auto;width:280px;cursor: default;">ดูรายละเอียดรุ่นอบรม</div>
+
+                  <div style="width:100%; margin-left:15px;">
+                    <div class="box-Leader" onclick="RoundClick(1)"><img src="./avatar/avatar-1.gif" width="100%"><div class="text-campus">BA/MF #1</div><div class="text-campusDay">10-11 มค. 65</div></div>
+                    <div class="box-Leader" onclick="RoundClick(2)"><img src="./avatar/avatar-2.gif" width="100%"><div class="text-campus">BA/MF #2</div><div class="text-campusDay">20-21 มค. 65</div></div>
+                    <div class="box-Leader" onclick="RoundClick(3)"><img src="./avatar/avatar-3.gif" width="100%"><div class="text-campus">BA/MF #3</div><div class="text-campusDay">1-2 กพ. 65</div></div>
+                    <div class="box-Leader" onclick="RoundClick(4)"><img src="./avatar/avatar-4.gif" width="100%"><div class="text-campus">BA/MF #4</div><div class="text-campusDay">3-4 กพ. 65</div></div>
+                    <div class="box-LeaderA" onclick="RoundClick(5)"><img src="./avatar/avatar-5.gif" width="100%"><div class="text-campus2">HL/CYH #1</div><div class="text-campusDay">8-9 กพ. 65</div></div>
+                    <div class="box-LeaderA" onclick="RoundClick(6)"><img src="./avatar/avatar-6.gif" width="100%"><div class="text-campus2">HL/CYH #2</div><div class="text-campusDay">10-11 กพ. 65</div></div>
+                    <div class="box-LeaderB" onclick="RoundClick(7)"><img src="./avatar/avatar-7.gif" width="100%"><div class="text-campus3">CYC/CYB #1</div><div class="text-campusDay">8-9 กพ. 65</div></div>
+                    <div class="box-LeaderB" onclick="RoundClick(8)"><img src="./avatar/avatar-8.gif" width="100%"><div class="text-campus3">CYC/CYB #2</div><div class="text-campusDay">10-11 กพ. 65</div></div>
+                    <div class="box-LeaderB" onclick="RoundClick(9)"><img src="./avatar/avatar-9.gif" width="100%"><div class="text-campus3">CYC/CYB #3</div><div class="text-campusDay">1-2 มีค. 65</div></div>
+                    <div class="box-LeaderB" onclick="RoundClick(10)"><img src="./avatar/avatar-10.gif" width="100%"><div class="text-campus3">CYC/CYB #4</div><div class="text-campusDay">3-4 มีค. 65</div></div>
+                    <div class="box-LeaderB" onclick="RoundClick(11)"><img src="./avatar/avatar-11.gif" width="100%"><div class="text-campus3">CYC/CYB #5</div><div class="text-campusDay">9-10 มีค. 65</div></div>
+
+
+
+                  </div>
+                  <div class="clr"></div>
+
+<!--
+
+                  <div style="width:100%; margin-left:5px;margin-top:0px;">
+                    <div class="box-Leader4" onclick="RoundClick(1)"><img src="./avatar/avatar-1.png" width="85%"><div class="text-campus4">BA/MF #1</div></div>
+                    <div class="box-Leader4" onclick="RoundClick(2)"><img src="./avatar/avatar-2.png" width="85%"><div class="text-campus4">BA/MF #2</div></div>
+                    <div class="box-Leader4" onclick="RoundClick(3)"><img src="./avatar/avatar-3.png" width="85%"><div class="text-campus4">BA/MF #3</div></div>
+                    <div class="box-Leader4" onclick="RoundClick(4)"><img src="./avatar/avatar-4.png" width="85%"><div class="text-campus4">BA/MF #4</div></div>
+                    <div class="box-Leader5" onclick="RoundClick(5)"><img src="./avatar/avatar-5.png" width="85%"><div class="text-campus4">HL/CYH #1</div></div>
+                    <div class="box-Leader5" onclick="RoundClick(6)"><img src="./avatar/avatar-6.png" width="85%"><div class="text-campus4">HL/CYH #2</div></div>
+                    <div class="box-Leader6" onclick="RoundClick(7)"><img src="./avatar/avatar-7.png" width="85%""><div class="text-campus4">CYC/CYB #1</div></div>
+                    <div class="box-Leader6" onclick="RoundClick(8)"><img src="./avatar/avatar-8.png" width="85%"><div class="text-campus4">CYC/CYB #2</div></div>
+                    <div class="box-Leader6" onclick="RoundClick(9)"><img src="./avatar/avatar-9.png" width="85%"><div class="text-campus4">CYC/CYB #3</div></div>
+                    <div class="box-Leader6" onclick="RoundClick(10)"><img src="./avatar/avatar-10.png" width="85%"><div class="text-campus4">CYC/CYB #4</div></div>
+                    <div class="box-Leader6" onclick="RoundClick(11)"><img src="./avatar/avatar-11.png" width="85%"><div class="text-campus5">CYC/CYB #4</div></div>
+                  </div>
+
+-->
+
+
+                </center>
+                <div class="clr"></div>
+              <div style="color:#0056ff;font-weight: 700; font-size:16px;margin-top:12px;"><p id="displayName"></p></div>
+
+            </center>
+          </div>
+
+        </div>
+      </div>
+
+
+
+    </section>
+    <center>
+    <div id="btn-1" class="btn-t2" onclick="window.location.href='loading.html';">กลับหน้าแรก</div>
+    <div style="margin-top:25px;font-size:10px;color:#555555;margin-bottom: 10px;font-weight: 700;">@LINE Retail Socitey</div>
+    </center>
+  </main>
+  </div>
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Template Main JS File -->
+
+  <script src="js/loading.js"></script>
+
+<!--
+<div id="id01" class="w3-modal w3-animate-opacity">
+  <div class="w3-modal-content w3-card-4">
+    <div class="w3-container" style="min-height:300px;padding:24px;width:100%;text-align:center;">
+      <div style="padding-top:20px;"><img src="./img/true.jpg" width="120px;"></div>
+        <div style="padding-top:20px;color:#0056ff;padding-bottom: 30px;">ระบบได้ทำการบันทึกรายการเรียบร้อยแล้ว<br>หากต้องการแก้ไขให้กด "เช็คข้อมูลของคุณให้ถูกต้อง" อีกครั้ง<br><br><font color="#ff0000"><b>กรุณาตรวจสอบความถูกต้องของ<br>รหัสพนักงาน, ชื่อ-นามสกุล<br>
+          หากข้อมูลไม่ถูกต้องจะไม่ได้รับอนุญาตให้เข้าใช้งาน</b></font></div>
+        <div class="btn-t2" onclick="CloseAll()">ปิดหน้าต่าง</div>
+      </center>
+    </div>
+  </div>
+</div>
+-->
+
+</body>
+</html>

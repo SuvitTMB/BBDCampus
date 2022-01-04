@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>LINE Retail Society</title>
+  <meta charset="utf-8">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+  <!-- End Google Tag Manager -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href='css/ekachon.css' rel="stylesheet" type="text/css">
+  <link href='css/style.css' rel="stylesheet" type="text/css">
+  <link href='css/button.css' rel="stylesheet" type="text/css">
+  <link href='css/w3.css' rel="stylesheet" type="text/css">
+  <link href='css/app.css' rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
+-->
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+
+
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background-color: #cacfe2;">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW7HPDW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand">Retail Society</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="loading" style="margin-top:60px;">
+    <section id="team" class="team section-bg">
+      <div class="container">
+        <center>
+          <div style="padding:120px;" id="loading"><img src="./img/loading.gif">
+            <div style="padding-top:15px;color:#002d63;">L o a d i n g</div></div>
+        </center>
+      </div>
+      <center>
+        <div style="margin-top:90px;font-size:10px;color:#555555;margin-bottom: 10px;font-weight: 700;">@LINE Retail Socitey</div>
+      </center>
+  </main>
+
+  <main id="main" style="margin-top:60px;display:none;">
+    <section id="team" class="team section-bg">
+      <div class="container">
+        <center>
+          <div class="btn-t4" style="margin:50px auto 15px auto;">ไม่สามารถทำรายการได้</div>
+          <div class="box-noffount">ระบบไม่อนุญาตให้ทำรายการ<br>เนื่องจากคุณยังไม่ได้ลงทะเบียน</div>
+        </center>
+      </div>
+      <center>
+        <div id="btn-t1" class="btn-t1" onclick="window.location.href='index.html';">ลงทะเบียน</div>
+        <div style="margin-top:90px;font-size:10px;color:#555555;margin-bottom: 10px;font-weight: 700;">@LINE Retail Socitey</div>
+      </center>
+  </main>
+
+<script type="text/javascript">
+
+  var aCheck = 0;
+  var Eid = "";
+  //var aStatusConfirm = 0;
+  //var aStatusEdit = 0;
+  //var sGroupReg = "Prudentital";
+  var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+  var sLineID = "Ua6b6bf745bd9bfd01a180de1a05c23b3";
+  sessionStorage.setItem("LineID", sLineID);
+
+/*
+  async function main() {
+    await liff.init({ liffId: "1655966947-8DgrpDq6" });
+    document.getElementById("isLoggedIn").append(liff.isLoggedIn());
+    if(liff.isLoggedIn()) {
+      getUserProfile();
+    } else {
+      liff.login();
+    }
+  }
+  main()
+
+
+  async function getUserProfile() {
+    const profile = await liff.getProfile();
+    document.getElementById("pictureUrl").src = profile.pictureUrl;
+    document.getElementById("pictureUrl1").src = profile.pictureUrl;
+    document.getElementById("userId").append(profile.userId);
+    document.getElementById("displayName").append(profile.displayName);
+    document.getElementById("displayName1").append(profile.displayName);
+    sessionStorage.setItem("LineLogin", profile.userId);
+    sessionStorage.setItem("LineID", profile.userId);
+    sessionStorage.setItem("LineName", profile.displayName);
+    sessionStorage.setItem("LinePicture", profile.pictureUrl);
+    ReadData();
+  }
+
+  function openWindow() {
+    liff.openWindow({
+      url: "https://line.me",
+      external: true     
+    })
+  }
+*/
+
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
+    authDomain: "retailproject-6f4fc.firebaseapp.com",
+    projectId: "retailproject-6f4fc",
+    storageBucket: "retailproject-6f4fc.appspot.com",
+    messagingSenderId: "653667385625",
+    appId: "1:653667385625:web:a5aed08500de80839f0588",
+    measurementId: "G-9SKTRHHSW9"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  var db = firebase.firestore().collection("CheckProfile");
+  var dbBootMember = firebase.firestore().collection("BootMember");
+  var dbBootRegister = firebase.firestore().collection("BootRegister");
+  ReadData();
+
+
+  var notRegister = 0;
+  function ReadData() {
+    //alert(sessionStorage.getItem("LineID"));
+    db.where('lineID','==',sessionStorage.getItem("LineID"))
+    .get().then((snapshot)=> {
+      snapshot.forEach(doc=> {
+        sessionStorage.setItem("LineID", doc.data().lineID);
+        sessionStorage.setItem("LineName", doc.data().linename);
+        sessionStorage.setItem("LinePicture", doc.data().empPicture);
+        sessionStorage.setItem("EmpID", doc.data().empID);
+        sessionStorage.setItem("EmpName", doc.data().empName);
+        sessionStorage.setItem("EmpRH", doc.data().empRH);
+      });
+      //alert(sessionStorage.getItem("LineID")+"\n"+sessionStorage.getItem("LineName")+"\n"+sessionStorage.getItem("EmpID")+"\n"+sessionStorage.getItem("EmpName")+"\n"+sessionStorage.getItem("EmpRH"));
+
+        dbBootRegister.where('EmpID','==',sessionStorage.getItem("EmpID"))
+        .get().then((snapshot)=> {
+        snapshot.forEach(doc=> {
+            notRegister = 1;
+            sessionStorage.setItem("CheckPass", doc.data().DateTime);
+            //alert(doc.data().DateTime);
+          });
+          if(notRegister==0) {
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("main").style.display = "block";
+            //alert("Not pass");
+          } else {
+            dbBootMember.where('EmpID','==',sessionStorage.getItem("EmpID"))
+            .get().then((snapshot)=> {
+            snapshot.forEach(doc=> {
+                sessionStorage.setItem("EmpType", doc.data().EmpType);
+                sessionStorage.setItem("CampRound", doc.data().CampRound);
+                //alert(doc.data().EmpType+"\n"+doc.data().CampRound);
+              });
+              GotoWeb();
+            });            
+          }
+        });
+
+    });
+  }
+
+
+function GotoWeb() {
+  window.location.href = 'loading.html';
+}
+
+</script>
+

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>LINE Retail Society</title>
+  <meta charset="utf-8">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+  <!-- End Google Tag Manager -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href='css/ekachon.css' rel="stylesheet" type="text/css">
+  <link href='css/style.css' rel="stylesheet" type="text/css">
+  <link href='css/button.css' rel="stylesheet" type="text/css">
+  <link href='css/w3.css' rel="stylesheet" type="text/css">
+  <link href='css/app.css' rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
+-->
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+  <style type="text/css">
+    .navbar-default .navbar-toggle .icon-bar { background-color: #fff; }
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+      padding: 4px 2px; line-height:1.4; border-top: 1px solid #f1f1f1;
+    }
+  </style>
+
+
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background-color: #dbdfed;">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW7HPDW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="index.html">Retail Society</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="loading.html">หน้าแรก</a></li>
+          <li><a href="allcourse.html">หลักสูตรอบรม</a></li>
+          <li><a href="mycourse.html">หลักสูตรของคุณ</a></li>
+          <!--<li><a href="register.html">ลงทะเบียน</a></li>-->
+          <li><a href="qa.html">Q&A</a></li>
+        </ul>
+      </div> 
+    </div>
+  </nav>
+
+  <section id="course" class="bg_course">
+    <div style="max-width:390px; width:100%; margin:50px auto 10px auto;">
+      <!--<div class="headCamp" id="HeadCampName"></div>-->
+      <div style="width:100%;padding-top:0px;">
+        <div id="DisplayCamp"></div>
+      </div>
+      <div class="clr"></div>
+      <div class="course_menu">
+        <div class="box-course_menu" style="margin-left: 20px;" onclick="DisplayMenu(1)" id="id1"><img src="./avatar/menu-1.png" style="height: 40px;padding:5px;"><br>Welcome</div>
+        <div class="box-course_menu" onclick="DisplayMenu(2)"><img src="./avatar/menu-2.png" style="height: 40px;padding:5px;"><br>กำหนดการ</div>
+        <div class="box-course_menu" onclick="DisplayMenu(3)"><img src="./avatar/menu-3.png" style="height: 40px;padding:5px;"><br>สมาชิก</div>
+        <div class="box-course_menu" onclick="DisplayMenu(4)"><img src="./avatar/menu-5.png" style="height: 40px;padding:5px;"><br>กิจกรรม</div>
+        <div class="box-course_menu" onclick="DisplayMenu(5)" style="font-size: 10px;"><img src="./avatar/menu-6.png" style="height: 40px;padding:5px;"><br>ผู้ร่วมงาน</div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </section>
+
+
+  <section class="team section-bg" style="background-color: #dbdfed;border-top:1px solid #ffffff;padding:30px 0px;">
+    <div style="max-width:390px; width:100%; margin:40px auto 0px auto;">
+
+      <div id="menu1" class="show-menu1" style="padding-bottom: 0px;">
+        <div id="WelcomePack"></div>
+      </div>
+
+      <div id="menu2" class="show-menu2" style="padding-bottom: 0px;color:#002d63;">
+          <div id="ListRules"></div>
+      </div>
+
+      <div id="menu3" class="show-menu2">
+        <center>
+          <div class="btn-t3" style="margin:20px auto 0px auto;" id="CampName"></div>
+          <div id="DisplayINClass"></div>
+          <div id="DisplayMember"></div>
+        </center>
+        <div class="clr"></div>
+      </div>
+
+      <div id="menu4" class="show-menu2">
+        <center>
+          <div class="btn-t3" style="margin:20px auto 25px auto;">ข้อมูลกิจกรรม</div>
+          <div id="Displayimg"></div>
+        </center>
+<!--
+        <center>
+          <div style="width:100%;cursor: pointer;" onclick="window.open('http://www.google.com', '_blank');">
+            <div style="position: relative;"><img src="./img/first-day-school.jpg" style="border-radius: 15px;width:380px;"></div>
+            <div class="btn-t1" style="margin:-50px 0 0 -120px;position: absolute;">ดูภาพกิจกรรม BBD CAMPUS</div>
+          </div>
+        </center>
+-->
+      </div>
+
+      <div id="menu5" class="show-menu2">
+        <center>
+          <div class="btn-t3" style="margin:20px auto 15px auto;">ข้อมูลผู้ลงทะเบียน</div>
+          <div id="DisplayCountRegister" class="count-txt"></div>
+        </center>
+        <div id="DisplayRegister"></div>
+        <div class="clr"></div>
+      </div>
+
+
+    </div>
+  </section>
+
+
+
+    <center>
+    <div id="btn-1" class="btn-t2" onclick="window.location.href='allcourse.html';">ดูหลักสูตรทั้งหมด</div>
+    <div style="margin-top:25px;font-size:10px;color:#555555;margin-bottom: 10px;font-weight: 700;">@LINE Retail Socitey</div>
+    </center>
+  </main>
+  </div>
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Template Main JS File -->
+
+  <script src="js/member.js"></script>
+
+  <div id="id01" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4">
+      <div class="w3-container" style="min-height:300px;padding:24px;width:100%;text-align:center;">
+        <div style="padding-top:20px;color:#0056ff;padding-bottom: 30px;">
+          <div id="DisplayUser"></div>
+        </div>
+        <div class="btn-t2" onclick="CloseAll()">ปิดหน้าต่าง</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
