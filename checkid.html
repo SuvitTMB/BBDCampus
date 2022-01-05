@@ -159,7 +159,7 @@
             document.getElementById("main").style.display = "block";
             //alert("Not pass");
           } else {
-            dbBootMember.where('EmpID','==',sessionStorage.getItem("EmpID"))
+            dbBootMember.where('EmpID','==',parseFloat(sessionStorage.getItem("EmpID")))
             .get().then((snapshot)=> {
             snapshot.forEach(doc=> {
                 sessionStorage.setItem("EmpType", doc.data().EmpType);
