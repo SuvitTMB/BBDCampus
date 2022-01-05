@@ -338,7 +338,7 @@ function SaveData() {
       StatusRegister : 1
     });
   }
-  alert("Save Done"); 
+  //alert("Save Done"); 
   WaitingPage();
   document.getElementById('myRegister').style.display='none';
   document.getElementById('myTimer').style.display='block';
