@@ -472,6 +472,6 @@ function phone_number_check(field,e) {
 
 }
 
-document.getElementById('txtEmpPhone1').onkeyup = function(e) {
+document.getElementById('txtEmpPhone99999999').onkeyup = function(e) {
   phone_number_check(this,e);
 }
