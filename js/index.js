@@ -24,13 +24,13 @@ var sDateTime = "";
 var sLINERegister = "";
 
 $(document).ready(function () {
-  //var sLineID = "Ua6b6bf745bd9bfd01a180de1a05c23b3";
-  //var sLineName = "Website";
-  //var sLinePicture = "https://profile.line-scdn.net/0hoLlg-mNNMGNRHiaTpMdPNG1bPg4mMDYrKX8qVnIYOgYpe3QwbCp2AXVKaVN_fnMzOC16V3NMagF8";
-  //sessionStorage.setItem("LineID", sLineID);
-  //sessionStorage.setItem("LineName", sLineName);
-  //sessionStorage.setItem("LinePicture", sLinePicture);
-  main()
+  var sLineID = "Ua6b6bf745bd9bfd01a180de1a05c23b3";
+  var sLineName = "Website";
+  var sLinePicture = "https://profile.line-scdn.net/0hoLlg-mNNMGNRHiaTpMdPNG1bPg4mMDYrKX8qVnIYOgYpe3QwbCp2AXVKaVN_fnMzOC16V3NMagF8";
+  sessionStorage.setItem("LineID", sLineID);
+  sessionStorage.setItem("LineName", sLineName);
+  sessionStorage.setItem("LinePicture", sLinePicture);
+  //main()
   Connect_DB();
   CheckBootCampOpen();
   //CheckRegister();
@@ -204,6 +204,29 @@ function EditData() {
 }
 
 
+
+function CheckMember() {
+  dbBootMember.where('EmpID','==',parseFloat(sessionStorage.getItem("EmpID")))
+  .where('EmpType','==',sEmpType)
+  .limit(1)
+  .get().then((snapshot)=> {
+    snapshot.forEach(doc=> {
+      EidBootMember = doc.id;
+      xEmpType = doc.data().EmpType;
+      sessionStorage.setItem("EmpID", doc.data().EmpID);
+      sessionStorage.setItem("EmpName", doc.data().EmpName);
+      dbBootMember.doc(EidBootMember).update({
+        LineID : sessionStorage.getItem("LineID"),
+        LineName : sessionStorage.getItem("LineName"),
+        LinePicture : sessionStorage.getItem("LinePicture"),
+        StatusRegister : 1
+      });
+    });
+    //alert("(1)EidBootMember="+EidBootMember);
+  });
+}
+
+
 function WaitingPage() {
   if(xCheckRegister==1) {
     document.getElementById('BootCampLoading').style.display='none';
@@ -267,6 +290,9 @@ function ClickSaveProfile() {
 
   if(sCheckBottom==5) {
     //alert(stxtEmpID+"\n"+stxtEmpName+"\n"+stxtEmpPhone+"\n"+stxtEmpGroup+"\n"+stxtATK);
+    sessionStorage.setItem("EmpID", document.getElementById("txtEmpID").value);
+    //alert(sessionStorage.getItem("EmpID"));
+    CheckMember();
     SaveData();
   }
 }
@@ -314,6 +340,7 @@ function SaveData() {
       DateRegister : dateString
     });
   }
+
   if(EidBootRegister=="") {
     dbBootRegister.add({
       LineID : sessionStorage.getItem("LineID"),
@@ -330,7 +357,10 @@ function SaveData() {
       DateTime : dateString
     });
   }
+
+/*
   if(EidBootMember!="") {
+  alert("(2)EidBootMember="+EidBootMember);
     dbBootMember.doc(EidBootMember).update({
       LineID : sessionStorage.getItem("LineID"),
       LineName : sessionStorage.getItem("LineName"),
@@ -338,6 +368,7 @@ function SaveData() {
       StatusRegister : 1
     });
   }
+*/
   //alert("Save Done"); 
   WaitingPage();
   document.getElementById('myRegister').style.display='none';
@@ -416,7 +447,7 @@ function phone_formatting(ele,restore) {
   // prevent it from going to the end
   // UNLESS
   // cursor was at the end AND a dash was added
-  document.getElementById('msg').innerHTML='<p>Selection is: ' + selection_end + ' and length is: ' + new_number.length + '</p>';
+  //document.getElementById('msg').innerHTML='<p>Selection is: ' + selection_end + ' and length is: ' + new_number.length + '</p>';
   
   if (new_number.slice(-1) === '-' && restore === false
       && (new_number.length === 8 && selection_end === 7)
@@ -472,6 +503,8 @@ function phone_number_check(field,e) {
 
 }
 
-//document.getElementById('txtEmpPhone').onkeyup = function(e) {
-//  phone_number_check(this,e);
-//}
+document.getElementById('txtEmpPhone').onkeyup = function(e) {
+  phone_number_check(this,e);
+}
+
+
