@@ -275,10 +275,14 @@ function ClickSaveProfile() {
 
 function SaveData() {
   var eSpace = "";
+  var eEmpGroup = "other";
   NewDate();
   var TimeStampDate = Math.round(Date.now() / 1000);
   sDateTime = dateString;
   sessionStorage.setItem("CheckPass", sDateTime);
+  if(document.getElementById("txtEmpGroup").value!="OTHER") {
+    eEmpGroup = "BBD";
+  } 
   //alert("Eid="+Eid);
   if(Eid=="") {
     db.add({
@@ -289,6 +293,7 @@ function SaveData() {
       empName : document.getElementById("txtEmpName").value,
       empPhone : document.getElementById("txtEmpPhone").value,
       empRH : document.getElementById("txtEmpGroup").value,
+      empBr : eEmpGroup,
       statusconfirm : 2,
       statusedit : 1,
       statuspass : 0,
@@ -305,6 +310,7 @@ function SaveData() {
       empName : document.getElementById("txtEmpName").value,
       empPhone : document.getElementById("txtEmpPhone").value,
       empRH : document.getElementById("txtEmpGroup").value,
+      empBr : eEmpGroup,
       DateRegister : dateString
     });
   }
@@ -407,7 +413,7 @@ function phone_formatting(ele,restore) {
   // prevent it from going to the end
   // UNLESS
   // cursor was at the end AND a dash was added
-  document.getElementById('msg').innerHTML='<p>Selection is: ' + selection_end + ' and length is: ' + new_number.length + '</p>';
+  document.getElementById('msg')[0].innerHTML='<p>Selection is: ' + selection_end + ' and length is: ' + new_number.length + '</p>';
   
   if (new_number.slice(-1) === '-' && restore === false
       && (new_number.length === 8 && selection_end === 7)
