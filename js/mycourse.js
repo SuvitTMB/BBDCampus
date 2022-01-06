@@ -234,6 +234,34 @@ function OpenMember(x) {
 }
 
 
+function OpenRegister(x) {
+  //alert(x);
+  var str = "";
+  dbBootRegister.where(firebase.firestore.FieldPath.documentId(), "==", x)
+  .get().then((snapshot)=> {
+  snapshot.forEach(doc=> {
+      str += '<div style="font-weight: 600;letter-spacing:4px;padding-bottom: 10px; color:#002d63;">รุ่น '+doc.data().EmpType+'</div>';
+      if(doc.data().StatusRegister==0) {
+        if(doc.data().EmpSex=="M") {
+           str += '<div><img src="./img/m.png" class="img-member" style="width:120px;height:120px;">';
+        } else {
+           str += '<div><img src="./img/f.png" class="img-member" style="width:120px;height:120px;">';
+        }
+        str += '<div class="txt-member" style="padding-top: 15px;">'+doc.data().ShortName+'</div>';
+      } else {
+          str += '<div><img src=\''+ doc.data().LinePicture +'\' class="img-member-true" style="width:120px;height:120px;">';
+          str += '<div class="txt-member1" style="padding-top: 15px;">'+doc.data().LineName+'</div>';
+      }
+      str += '<div style="margin-top:20px;font-size:13px;font-weight: 600;">คุณ'+doc.data().EmpName+'</div>';
+      str += '<div>ลงทะเบียนหลักสูตร '+doc.data().EmpType+'</div>';
+      str += '<div>เมื่อวันที่ '+doc.data().DateTime+'</div>';
+    });
+    $("#DisplayUser").html(str);  
+    document.getElementById("id01").style.display = "block";
+  });
+}
+
+
 function CloseAll() {
   document.getElementById('id01').style.display='none';
 }
