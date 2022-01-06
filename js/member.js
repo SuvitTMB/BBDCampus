@@ -87,9 +87,9 @@ function DisplayRound(x) {
 
 	    str += '<div style="width:110px;float: left;padding-top:20px;"><img src="./avatar/'+doc.data().PicCamp+'" style="height: 200px;padding:10px;"></div>';
 	    str += '<div style="width:280px;float: left;color:#fff;padding-top:0px;">';
-	    str += '<div class="headCamp">'+doc.data().CampName+'</div>';
+	    str += '<div class="headCamp">หลักสูตร '+doc.data().CampName+'</div>';
 	    str += '<div style="color:#002d63; font-weight: 600;padding-bottom: 6px;margin-top:20px;">รายละเอียดหลักสูตร</div>';
-	    str += '<div>หลักสูตร BBD Specialist Bootcamp '+doc.data().CampName+'</div>';
+	    str += '<div>BBD Specialist Bootcamp '+doc.data().CampName+'</div>';
 	    str += '<div>วันที่อบรม '+doc.data().TrainingDays+'</div>';
 	    str += '<div>'+doc.data().Hotel+'</div>';
 	    str += '<div>กลุ่มพนักงาน : '+doc.data().Participant+'</div>';
