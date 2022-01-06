@@ -121,7 +121,7 @@ function LoadMember() {
   var str = "";
   //alert(sEmpType);
   dbBootMember.where('EmpType','==',sEmpType)
-  //.orderBy('EmpBU','asc')
+  .orderBy('ShortName','asc')
   .get().then((snapshot)=> {
   snapshot.forEach(doc=> {
       MemberINClass = MemberINClass+1;
