@@ -95,6 +95,10 @@ function Connect_DB() {
 
 
 function CheckBootCampOpen() {
+  if(sessionStorage.getItem("LineID")==null) {
+    alert("Null");
+    main();
+  }
   var str = "";
   dbBootCamp.where('CampStatus','==',1)
   .limit(1)
