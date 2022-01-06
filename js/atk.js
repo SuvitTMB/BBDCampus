@@ -61,7 +61,7 @@ async function getUserProfile() {
   str += '<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="add-profile" width="100px"></div>';
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
-  alert(profile.userId);
+  //alert(profile.userId);
   //Connect_DB();
   //CheckData();
 }
@@ -97,7 +97,7 @@ function Connect_DB() {
 
 function CheckBootCampOpen() {
   if(sessionStorage.getItem("LineID")==null) {
-    alert("Null");
+    //alert("Null");
     main();
   }
   var str = "";
@@ -141,7 +141,7 @@ function CheckRegister() {
       sessionStorage.setItem("EmpName", doc.data().EmpName);
       sessionStorage.setItem("CheckPass", doc.data().DateTime);
       sessionStorage.setItem("ATKimg", doc.data().ATKimg);
-      sessionStorage.setItem("EmpGroup", doc.data().empRH);
+      sessionStorage.setItem("EmpGroup", doc.data().EmpRH);
       document.getElementById('OpenBootCamp').style.display='none';
       document.getElementById('myRegister').style.display='none';
       document.getElementById('myTimer').style.display='block';
