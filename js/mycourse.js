@@ -132,14 +132,15 @@ function DisplayRound(x) {
 }
 
 
-
+var MemberINClass = 0;
 function LoadMember() {
   var str = "";
   //alert(sEmpType);
   dbBootMember.where('EmpType','==',sEmpType)
-  //.orderBy('EmpBU','asc')
+  .orderBy('ShortName','asc')
   .get().then((snapshot)=> {
   snapshot.forEach(doc=> {
+      MemberINClass = MemberINClass+1;
 	  	if(doc.data().StatusRegister==0) {
 	  		if(doc.data().EmpSex=="M") {
 		  		str += '<div class="box-member" onclick="OpenMember(\''+ doc.id +'\')"><div><img src="./img/m.png" class="img-member"></div><div class="txt-member">'+ doc.data().ShortName +'</div></div>';
@@ -147,9 +148,10 @@ function LoadMember() {
 		  		str += '<div class="box-member" onclick="OpenMember(\''+ doc.id +'\')"><div><img src="./img/f.png" class="img-member"></div><div class="txt-member">'+ doc.data().ShortName +'</div></div>';
 	  		}
 	  	} else {
-		  	str += '<div class="box-member" onclick="OpenMember(\''+ doc.id +'\')"><div><img src="'+ doc.data().LinePicture +'" class="img-member"></div><div class="txt-member1">'+ doc.data().ShortName +'</div></div>';
+		  	str += '<div class="box-member" onclick="OpenMember(\''+ doc.id +'\')"><div><img src=\''+ doc.data().LinePicture +'\' class="img-member"></div><div class="txt-member1">'+ doc.data().ShortName +'</div></div>';
 		}
     });
+    $("#DisplayINClass").html("<div style='padding:10px;color:#0056ff;font-weight:600;'>จำนวนผู้เข้าอบรม : "+MemberINClass+" คน</div>");  
     $("#DisplayMember").html(str);  
   });
 
@@ -159,15 +161,16 @@ function LoadMember() {
 
 function LoadRegister() {
   var str = "";
-  //alert(sEmpType);
+  var sCountID = 0;
   dbBootRegister.where('EmpType','==',sEmpType)
   .orderBy('TimeStamp','desc')
   .get().then((snapshot)=> {
   snapshot.forEach(doc=> {
+    sCountID = sCountID+1;
 		str += '<div class="box-member" onclick="OpenRegister(\''+ doc.id +'\')"><div><img src="'+ doc.data().LinePicture +'" class="img-register"></div><div class="txt-member">'+ doc.data().LineName +'</div></div>';
-		//str += '<div class="box-member"><div><img src="./img/m.png" class="img-member"></div><div class="txt-member">'+ doc.data().LineName +'</div></div>';
     });
     $("#DisplayRegister").html(str);  
+    $("#DisplayCountRegister").html("<div>จำนวนลงทะเบียน : "+sCountID+" คน</div>");  
   });
 }
 

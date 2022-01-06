@@ -133,13 +133,6 @@ function LoadMember() {
 	  		}
 	  	} else {
 		  	str += '<div class="box-member" onclick="OpenMember(\''+ doc.id +'\')"><div><img src=\''+ doc.data().LinePicture +'\' class="img-member"></div><div class="txt-member1">'+ doc.data().ShortName +'</div></div>';
-/*
-	  		if(doc.data().EmpSex=="M") {
-			  	str += '<div class="box-member" onclick="OpenMember(\''+ doc.id +'\')"><div><img src="./avatar/avatar-3.png" class="img-member-true"></div><div class="txt-member1">'+ doc.data().ShortName +'</div></div>';
-	  		} else {
-			  	str += '<div class="box-member" onclick="OpenMember(\''+ doc.id +'\')"><div><img src="./avatar/avatar-2.png" class="img-member-true"></div><div class="txt-member1">'+ doc.data().ShortName +'</div></div>';
-	  		}
-*/
 		}
     });
     $("#DisplayINClass").html("<div style='padding:10px;color:#0056ff;font-weight:600;'>จำนวนผู้เข้าอบรม : "+MemberINClass+" คน</div>");  
@@ -160,7 +153,6 @@ function LoadRegister() {
   snapshot.forEach(doc=> {
     sCountID = sCountID+1;
 		str += '<div class="box-member" onclick="OpenRegister(\''+ doc.id +'\')"><div><img src="'+ doc.data().LinePicture +'" class="img-register"></div><div class="txt-member">'+ doc.data().LineName +'</div></div>';
-		//str += '<div class="box-member"><div><img src="./img/m.png" class="img-member"></div><div class="txt-member">'+ doc.data().LineName +'</div></div>';
     });
     $("#DisplayRegister").html(str);  
     $("#DisplayCountRegister").html("<div>จำนวนลงทะเบียน : "+sCountID+" คน</div>");  
