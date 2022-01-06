@@ -437,18 +437,7 @@ function phone_formatting(ele,restore) {
   else {
     new_number = number;
   }
-  
-  // if value is heigher than 12, last number is dropped
-  // if inserting a number before the last character, numbers
-  // are shifted right, only 12 characters will show
-  ele.value =  (new_number.length > 12) ? new_number.substring(12,0) : new_number;
-  
-  // restore cursor selection,
-  // prevent it from going to the end
-  // UNLESS
-  // cursor was at the end AND a dash was added
-  //document.getElementById('msg').innerHTML='<p>Selection is: ' + selection_end + ' and length is: ' + new_number.length + '</p>';
-  
+  ele.value =  (new_number.length > 12) ? new_number.substring(12,0) : new_number; 
   if (new_number.slice(-1) === '-' && restore === false
       && (new_number.length === 8 && selection_end === 7)
           || (new_number.length === 4 && selection_end === 3)) {
@@ -460,7 +449,6 @@ function phone_formatting(ele,restore) {
     selection_end--;
   }
   ele.setSelectionRange(selection_start, selection_end);
-
 }
   
 function phone_number_check(field,e) {
