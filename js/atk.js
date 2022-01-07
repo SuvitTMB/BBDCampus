@@ -61,7 +61,7 @@ async function getUserProfile() {
   str += '<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="add-profile" width="100px"></div>';
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
-  //alert(profile.userId);
+  alert("Load Profile : "+profile.userId);
   //Connect_DB();
   //CheckData();
 }
@@ -97,9 +97,10 @@ function Connect_DB() {
 
 function CheckBootCampOpen() {
   if(sessionStorage.getItem("LineID")==null) {
-    //alert("Null");
+    alert("Null");
     main();
   }
+  alert("Display LINE ID : "+sessionStorage.getItem("LineID"));
   var str = "";
   dbBootCamp.where('CampStatus','==',1)
   .limit(1)
