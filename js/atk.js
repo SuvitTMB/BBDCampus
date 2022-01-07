@@ -46,6 +46,7 @@ async function main() {
   document.getElementById("isLoggedIn").append(liff.isLoggedIn());
   if(liff.isLoggedIn()) {
     getUserProfile();
+    alert("Load Profile : "+sessionStorage.getItem("LineID")+"/"+"Load DisplayName : "+sessionStorage.getItem("LineName")+"/"+"Load pictureUrl : "+sessionStorage.getItem("LinePicture")+"/");
   } else {
     liff.login();
   }
@@ -69,7 +70,7 @@ async function getUserProfile() {
   str += '<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="add-profile" width="100px"></div>';
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
-  alert("Load Profile : "+profile.userId);
+  //alert("Load Profile : "+sessionStorage.getItem("LineID")+"/"+"Load DisplayName : "+sessionStorage.getItem("LineName")+"/"+"Load pictureUrl : "+sessionStorage.getItem("LinePicture")+"/");
   //Connect_DB();
   //CheckData();
 }
@@ -171,7 +172,6 @@ function CheckData() {
   db.where('lineID','==',sessionStorage.getItem("LineID"))
   .get().then((snapshot)=> {
     snapshot.forEach(doc=> {
-      alert("CheckData = "+doc.data().EmpID);
       Eid = doc.id;
       sDateRegister = doc.data().DateRegister;
       sessionStorage.setItem("EmpID", doc.data().empID);
