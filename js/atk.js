@@ -171,6 +171,7 @@ function CheckData() {
   db.where('lineID','==',sessionStorage.getItem("LineID"))
   .get().then((snapshot)=> {
     snapshot.forEach(doc=> {
+      alert("CheckData = "+doc.data().EmpID);
       Eid = doc.id;
       sDateRegister = doc.data().DateRegister;
       sessionStorage.setItem("EmpID", doc.data().empID);
