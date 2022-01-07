@@ -134,6 +134,7 @@ function CheckRegister() {
   .limit(1)
   .get().then((snapshot)=> {
     snapshot.forEach(doc=> {
+      alert("Fount LINE ID = "+doc.data().EmpID);
       xCheckRegister = 1;
       EidBootRegister = doc.id;
       sDateTime = doc.data().DateTime;
