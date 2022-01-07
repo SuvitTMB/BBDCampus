@@ -52,6 +52,14 @@ async function main() {
 }
 
 
+function openWindow() {
+  liff.openWindow({
+    url: "https://line.me",
+    external: true     
+  })
+}
+
+
 async function getUserProfile() {
   var str = "";
   const profile = await liff.getProfile();
@@ -64,14 +72,6 @@ async function getUserProfile() {
   alert("Load Profile : "+profile.userId);
   //Connect_DB();
   //CheckData();
-}
-
-
-function openWindow() {
-  liff.openWindow({
-    url: "https://line.me",
-    external: true     
-  })
 }
 
 
