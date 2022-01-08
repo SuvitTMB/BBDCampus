@@ -336,7 +336,7 @@ document.getElementById("send").addEventListener("click", function() {
         function complete() {
           uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
             sessionStorage.setItem("ATKimg", url);
-            alert(url);
+            //alert(url);
           }
           );
           document.getElementById("uploading").innerHTML += `${files[i].name} upoaded <br />`;
