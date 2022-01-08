@@ -30,28 +30,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 -->
+
     <script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script> 
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script> 
-
-  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
-    <script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
-
-
-
-
-<!--
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
--->
-
-
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
@@ -76,9 +58,7 @@
       }, false);
     })();    
     </script>
-    <style>
-     .imgView { height: 200px;width:360px; border:2px solid #f68b1f; border-radius: 10px;margin-top:5px; }
-    </style>
+
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background: #f68b1f;">
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW7HPDW"
@@ -146,7 +126,7 @@
                 </div>
                 <div class="input_field" style="width:100% !important;"> 
                   <span><i aria-hidden="true" class="fa fa-phone"></i></span>
-                  <input type="text" class="form-control" id="txtEmpPhone" placeholder="หมายเลขโทรศัพท์" required/>
+                  <input type="text" class="form-control" id="txtEmpPhone" placeholder="หมายเลขโทรศัพท์" pattern="[+-]?[0-9]" required/>
                   <!--<input type="text" class="form-control" id="txtEmpPhone" placeholder="หมายเลขโทรศัพท์" pattern="[+-]?[0-9]" required/>-->
                   <!--<div id="msg"></div>-->
                 </div>
@@ -185,13 +165,8 @@
                   </select>
                   <div class="select_arrow"></div>
                 </div>
-
-                <div>Upload ภาพถ่าย ATK ของคุณ (ถ้ามี)</div>
-                <div><img id="PicWOW1" class="imgView"></div>
-                <div id="SelectWOW1" class="btn-t3" style="margin: 10px 0 15px 60px;">Upload File รูป ATK</div>
-                <!--<div id="Upload1" class="btn-t1" style="display: none;">บันทึกรายการ</div>-->
               </div>
-              <div class="btn-t1" onclick="Upload1()" type="submit" id="test">ลงทะเบียน</div>
+              <div class="btn-t1" onclick="ClickSaveProfile()" type="submit" id="test">ลงทะเบียน</div>
             </form>
           </div>
         </div>
@@ -203,26 +178,15 @@
     <div class="clr"></div>
     <div class="form_wrapper">
       <div class="form_container">
+        <div class="title_container">
+          <div class="title-head">ยินดีต้อนรับสู่<br>BBD CAMPUS Specialist Program 2022</div>
+        </div>
         <div class="clearfix" style="margin:10px 0 20px 0;">
           <div id="MyWating"></div>
         </div>
       </div>
     </div>
   </div>
-
-<!--
-  <div id="myATK" class="carousel slide text-center" data-ride="carousel" style="display: block;">
-    <div class="clr"></div>
-    <div class="form_wrapper" style="background-color: #ff0000;">
-      <div style="height: 60px;"><div class="title-head" style="color:#ffffff;">แสดงผล ATK สำหรับเข้าร่วมงาน<br>BBD CAMPUS Specialist Program 2022</div></div>
-      <div class="form_container" style="background-color: #ffffff; height: 300px;">
-        <div class="clearfix" style="margin:10px 0 20px 0;">
-          <div id="MyWating1"></div>
-        </div>
-      </div>
-    </div>
-  </div>
--->
 
 
   <div class="clr"></div>
@@ -231,7 +195,7 @@
       <center><div style="font-weight: 600; color:#000;">LINE Retail Society</div></center>
   </footer>
 
-<!--
+
   <div id="id01" class="w3-modal w3-animate-opacity" style="z-index: 20;">
     <div class="w3-modal-content w3-card-4" style="background: #fff;">
       <div class="w3-container" style="min-height:300px;padding:24px;width:100%;text-align:center;">
@@ -244,19 +208,6 @@
     <div style="height:20px;"></div>
   </div>
 
-
-  <div id="id02" class="w3-modal w3-animate-opacity" style="z-index: 20;">
-    <div class="w3-modal-content w3-card-4" style="background: #ff0000;">
-      <div class="w3-container" style="min-height:300px;padding:24px;width:100%;text-align:center;">
-          <div id="DisplayList"></div>
-          <div class="btn-t2" onclick="CloseAll()" style="margin-top:20px;">ปิดหน้าต่างนี้</div>
-          <div style="height: 15px;"></div>
-        </center>
-      </div>
-    </div>
-    <div style="height:20px;"></div>
-  </div>
--->
 <!--
 <script src="./js/session.js"></script>
 -->
