@@ -30,10 +30,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 -->
+<!--
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+    <script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-storage.js"></script>
+    <script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
+-->
 
     <script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-storage.js"></script>
+
+
+
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
@@ -126,7 +141,7 @@
                 </div>
                 <div class="input_field" style="width:100% !important;"> 
                   <span><i aria-hidden="true" class="fa fa-phone"></i></span>
-                  <input type="text" class="form-control" id="txtEmpPhone" placeholder="หมายเลขโทรศัพท์" pattern="[+-]?[0-9]" required/>
+                  <input type="text" class="form-control" id="txtEmpPhone" placeholder="หมายเลขโทรศัพท์" required/>
                   <!--<input type="text" class="form-control" id="txtEmpPhone" placeholder="หมายเลขโทรศัพท์" pattern="[+-]?[0-9]" required/>-->
                   <!--<div id="msg"></div>-->
                 </div>
@@ -165,6 +180,19 @@
                   </select>
                   <div class="select_arrow"></div>
                 </div>
+
+                <div>Upload Files รูปถ่าย ATK ของคุณ (ถ้ามี)</div>
+                <div style="border:1px solid #cccccc; width:100%; padding:15px; border-radius: 5px; margin-top:5px; background:#f1f1f1;">
+                  <center>
+                    <div style="font-size: 11px; color:#0056ff;"><input type="file" id="files" style="cursor: pointer;" multiple /><div>
+                    <div id="ShowButtonUpload" style="display: none;">
+                      <button id="send" type="button" class="btn-t2" style="margin-top:12px;padding:4px 30px;font-size: 11px; color:#ffffff;">คลิกเพื่อ Upload Files</button>
+                      <div id="uploading" style="font-size: 10px; color:#f68b1f;margin-top:12px;"></div>
+                      <div><progress value="0" max="100" id="progress"></progress></div>
+                    </div>
+                  </center>
+                </div>
+
               </div>
               <div class="btn-t1" onclick="ClickSaveProfile()" type="submit" id="test">ลงทะเบียน</div>
             </form>
@@ -178,9 +206,11 @@
     <div class="clr"></div>
     <div class="form_wrapper">
       <div class="form_container">
+        <!--
         <div class="title_container">
           <div class="title-head">ยินดีต้อนรับสู่<br>BBD CAMPUS Specialist Program 2022</div>
         </div>
+      -->
         <div class="clearfix" style="margin:10px 0 20px 0;">
           <div id="MyWating"></div>
         </div>
@@ -213,6 +243,138 @@
 -->
 <script src="./js/atk.js"></script>
 <script src='https://use.fontawesome.com/4ecc3dbb0b.js'></script>
+
+
+<script>
+// Your web app's Firebase configuration
+/*
+var firebaseConfig = {
+    apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
+    authDomain: "retailproject-6f4fc.firebaseapp.com",
+    projectId: "retailproject-6f4fc",
+    storageBucket: "retailproject-6f4fc.appspot.com",
+    messagingSenderId: "653667385625",
+    appId: "1:653667385625:web:a5aed08500de80839f0588",
+    measurementId: "G-9SKTRHHSW9"
+};
+*/
+// Initialize Firebase
+//firebase.initializeApp(firebaseConfig);
+/*
+  var firebaseConfig = {
+    apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
+    authDomain: "retailproject-6f4fc.firebaseapp.com",
+    projectId: "retailproject-6f4fc",
+  databaseURL: "https://file-upload-6f4fc.firebaseio.com",
+    storageBucket: "retailproject-6f4fc.appspot.com",
+    messagingSenderId: "653667385625",
+    appId: "1:653667385625:web:a5aed08500de80839f0588",
+    measurementId: "G-9SKTRHHSW9"
+    apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
+    authDomain: "retailproject-6f4fc.firebaseapp.com",
+    projectId: "retailproject-6f4fc",
+  databaseURL: "https://file-upload-deae7.firebaseio.com",
+  storageBucket: "file-upload-deae7.appspot.com",
+  messagingSenderId: "772980880174",
+  appId: "1:772980880174:web:273969e0f628410853c0bf"
+
+
+  };
+  firebase.initializeApp(firebaseConfig);
+*/
+/*
+  db = firebase.firestore().collection("CheckProfile");
+  dbBootCamp = firebase.firestore().collection("BootCamp");
+  dbBootRegister = firebase.firestore().collection("BootRegister");
+  dbBootMember = firebase.firestore().collection("BootMember");
+*/
+
+</script>
+
+<script>
+var files = [];
+document.getElementById("files").addEventListener("change", function(e) {
+  files = e.target.files;
+  for (let i = 0; i < files.length; i++) {
+    console.log(files[i]);
+    document.getElementById('ShowButtonUpload').style.display='block';
+    document.getElementById('send').style.display='block';
+  }
+});
+
+document.getElementById("send").addEventListener("click", function() {
+  //checks if files are selected
+  if (files.length != 0) {
+    //Loops through all the selected files
+    for (let i = 0; i < files.length; i++) {
+      //create a storage reference
+      var DateTimeStamp = Math.round(Date.now() / 1000);
+      var ImgName = sCampRound+"-"+sessionStorage.getItem("EmpID")+"-"+DateTimeStamp;
+      var uploadTask = firebase.storage().ref('ATK/'+ImgName).put(files[i]);
+      //var ImgName = "R1-08400-"+DateTimeStamp;
+      //var storage = firebase.storage().ref('ATK/'+files[i].name);
+      var storage = firebase.storage().ref('ATK/'+ImgName);
+      //var uploadTask = firebase.storage().ref('ATK/'+ImgName+".jpg").put(files[0]);
+      //var storage = firebase.storage().ref(files[i].name);
+
+      //upload file
+      var upload = storage.put(files[i]);
+
+      //update progress bar
+      upload.on(
+        "state_changed",
+        function progress(snapshot) {
+          var percentage =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          document.getElementById("progress").value = percentage;
+        },
+
+        function error() {
+          alert("error uploading file");
+        },
+
+        function complete() {
+          uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+            sessionStorage.setItem("ATKimg", url);
+            alert(url);
+          }
+          );
+          document.getElementById("uploading").innerHTML += `${files[i].name} upoaded <br />`;
+          document.getElementById('send').style.display='none';
+        }
+/*
+        function() {
+          uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+            sessionStorage.setItem("ATKimg", url);
+            alert(url);
+          }
+        );
+        }
+*/
+
+
+      );
+    }
+  } else {
+    alert("No file chosen");
+  }
+});
+
+function getFileUrl(filename) {
+  //create a storage reference
+  var storage = firebase.storage().ref(filename);
+
+  //get file url
+  storage
+    .getDownloadURL()
+    .then(function(url) {
+      console.log(url);
+    })
+    .catch(function(error) {
+      console.log("error encountered");
+    });
+}
+</script>
 
 </body>
 </html>
