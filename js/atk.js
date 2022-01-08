@@ -40,7 +40,7 @@ $(document).ready(function () {
   Connect_DB();
   CheckBootCampOpen();
   //CheckRegister();
-  //CheckData();
+  //CheckData(); 
 });
 
 
