@@ -22,7 +22,6 @@ var sEmpType = "";
 var sCampRound = "";
 var sDateTime = "";
 var sLINERegister = "";
-var sATK = "";
 
 $(document).ready(function () {
   //var sLineID = "Ua6b6bf745bd9bfd01a180de1a05c23b3";
@@ -34,7 +33,6 @@ $(document).ready(function () {
   main()
   Connect_DB();
   CheckBootCampOpen();
-  Upload1();
   //CheckRegister();
   //CheckData();
 });
@@ -42,22 +40,13 @@ $(document).ready(function () {
 
 
 async function main() {
-  await liff.init({ liffId: "1655966947-gN8W72BR" });
+  await liff.init({ liffId: "1655966947-8DgrpDq6" });
   document.getElementById("isLoggedIn").append(liff.isLoggedIn());
   if(liff.isLoggedIn()) {
     getUserProfile();
-    alert("Load Profile : "+sessionStorage.getItem("LineID")+"/"+"Load DisplayName : "+sessionStorage.getItem("LineName")+"/"+"Load pictureUrl : "+sessionStorage.getItem("LinePicture")+"/");
   } else {
     liff.login();
   }
-}
-
-
-function openWindow() {
-  liff.openWindow({
-    url: "https://line.me",
-    external: true     
-  })
 }
 
 
@@ -70,9 +59,16 @@ async function getUserProfile() {
   str += '<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="add-profile" width="100px"></div>';
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
-  //alert("Load Profile : "+sessionStorage.getItem("LineID")+"/"+"Load DisplayName : "+sessionStorage.getItem("LineName")+"/"+"Load pictureUrl : "+sessionStorage.getItem("LinePicture")+"/");
   //Connect_DB();
   //CheckData();
+}
+
+
+function openWindow() {
+  liff.openWindow({
+    url: "https://line.me",
+    external: true     
+  })
 }
 
 
@@ -97,11 +93,6 @@ function Connect_DB() {
 
 
 function CheckBootCampOpen() {
-  if(sessionStorage.getItem("LineID")==null) {
-    alert("Null");
-    main();
-  }
-  alert("Display LINE ID : "+sessionStorage.getItem("LineID"));
   var str = "";
   dbBootCamp.where('CampStatus','==',1)
   .limit(1)
@@ -135,16 +126,12 @@ function CheckRegister() {
   .limit(1)
   .get().then((snapshot)=> {
     snapshot.forEach(doc=> {
-      alert("Fount LINE ID = "+doc.data().EmpID);
       xCheckRegister = 1;
       EidBootRegister = doc.id;
       sDateTime = doc.data().DateTime;
-      sATK = doc.data().ATK;
       sessionStorage.setItem("EmpID", doc.data().EmpID);
       sessionStorage.setItem("EmpName", doc.data().EmpName);
       sessionStorage.setItem("CheckPass", doc.data().DateTime);
-      sessionStorage.setItem("ATKimg", doc.data().ATKimg);
-      sessionStorage.setItem("EmpGroup", doc.data().EmpRH);
       document.getElementById('OpenBootCamp').style.display='none';
       document.getElementById('myRegister').style.display='none';
       document.getElementById('myTimer').style.display='block';
@@ -190,7 +177,7 @@ function CheckData() {
       document.getElementById("txtEmpGroup").value = doc.data().empRH;
       WaitingPage();
     });
-    $("#Upload1 *").attr("disabled", "disabled").off('click');
+    $("#test *").attr("disabled", "disabled").off('click');
     OpenForm();
   });
 }
@@ -255,8 +242,11 @@ function WaitingPage() {
       xEmpType = doc.data().EmpType;
       sessionStorage.setItem("EmpID", doc.data().EmpID);
       sessionStorage.setItem("EmpName", doc.data().EmpName);
+      //alert(sessionStorage.getItem("EmpID")+"---"+xEmpType);
+      //alert(EidBootCamp);
+      //sEmpType = doc.data().EmpType;
+      //sCheckOpen = doc.data().CampName;
     });
-    str +='<div class="title_container"><div class="title-head">ยินดีต้อนรับสู่<br>BBD CAMPUS Specialist Program 2022</div></div>';
     str +='<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="profile-member"></div>';
     str +='<div class="profile-txt">'+ sessionStorage.getItem("LineName") +'</div>';
     str +='<div><div style="padding-top:15px;color:#f68b1f;font-weight: 600;">คุณ'+sessionStorage.getItem("EmpName")+'</div>';
@@ -266,43 +256,27 @@ function WaitingPage() {
       str +='<div class="profile-txt1">ได้ทำการลงทะเบียนเข้าร่วมงาน<br>BBD CAMPUS Specialist Program 2022<br><font color="#0056ff">รุ่น <b>'+sEmpType+'</b></font></div>';
     }
     if(sDateTime!="") {
-      str +='<div style="color:#ccc;font-size:11px;font-weight: 300;">เมื่อวันที่ : '+ sDateTime +'</div>';
+      str +='<div style="color:#ccc;">ลงทะเบียนไว้เมื่อ : '+ sDateTime +'</div>';
     }
-    if(sessionStorage.getItem("ATKimg")!="") {
-      str +='<div class="btn-t4" onclick="showATK()" style="margin-top:10px;width:250px;">แสดงผล ATK ก่อนเข้างาน</div>';
-    }
-    str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:10px;width:250px;">ดูรายละเอียดเว็บไซต์</div>';
+
+    //if(sLINERegister!="") {
+    //  str +='<div class="btn-t4" onclick="window.open(\''+ sLINERegister +'\');" style="margin-top:10px;">สมัคร Group LINE : '+sEmpType+'</div>';     
+    //}
+
+    str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:10px;">ดูรายละเอียด</div>';
     str +='</div></center>';
     $("#MyWating").html(str);    
 
   });
 }
 
-        
-
-
-function showATK() {
-  var str = "";
-  str +='<div class="title_container"><div class="title-head">แสดงผล ATK สำหรับเข้าร่วมงาน<br>BBD CAMPUS Specialist Program 2022</div></div>';
-  str +='<div class="profile-txt" style="margin-top:-25px;font-size:12px;">สำหรับรอบอบรม : '+ sEmpType +'</div>';
-  str +='<div><img src="'+ sessionStorage.getItem("ATKimg") +'" style="width:370px;"></div>';
-  str +='<div style="padding:10px;color:#002d63;font-weight: 600;">แจ้งผล ATK เป็น : <font color="#f68b1f">'+sATK+'</font></div>';
-  //str +='<div class="profile-txt" style="font-size:12px;color:#002d63;">ข้อมูลผู้แจ้งผล ATK</div>';
-  str +='<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="profile-member" style="width:60px;"></div>';
-  str +='<div style="color:#0056ff;font-weight: 600;margin-top:15px;">คุณ'+sessionStorage.getItem("EmpName")+'</div>';
-  str +='<div style="color:#0056ff;">สังกัด : '+sessionStorage.getItem("EmpGroup")+'</div>';
-  str +='<div style="color:#ccc;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+sDateTime+'</div>';
-  str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:20px;width:220px;">ดูรายละเอียดเว็บไซต์</div>';
-  $("#MyWating").html(str);    
-}
 
 
 
 
-var sCheckBottom = 0;
 function ClickSaveProfile() {
-  sCheckBottom = 0;
   //alert($("input[type=checkbox][id=cb1]:checked").val());
+  var sCheckBottom = 0;
   stxtEmpID = document.getElementById("txtEmpID").value;
   stxtEmpName = document.getElementById("txtEmpName").value;
   stxtEmpPhone = document.getElementById("txtEmpPhone").value;
@@ -313,13 +287,11 @@ function ClickSaveProfile() {
   if(stxtEmpPhone !== null && stxtEmpPhone !== '') { sCheckBottom = sCheckBottom+1; }
   if(stxtEmpGroup !== null && stxtEmpGroup !== '') { sCheckBottom = sCheckBottom+1; }
   if(stxtATK !== null && stxtATK !== '') { sCheckBottom = sCheckBottom+1; }
-  sATK = document.getElementById("txtATK").value;
 
   if(sCheckBottom==5) {
     //alert(stxtEmpID+"\n"+stxtEmpName+"\n"+stxtEmpPhone+"\n"+stxtEmpGroup+"\n"+stxtATK);
     sessionStorage.setItem("EmpID", document.getElementById("txtEmpID").value);
     //alert(sessionStorage.getItem("EmpID"));
-    //alert("ClickSaveProfile");
     CheckMember();
     SaveData();
   }
@@ -368,6 +340,7 @@ function SaveData() {
       DateRegister : dateString
     });
   }
+
   if(EidBootRegister=="") {
     dbBootRegister.add({
       LineID : sessionStorage.getItem("LineID"),
@@ -378,13 +351,25 @@ function SaveData() {
       EmpPhone : document.getElementById("txtEmpPhone").value,
       EmpRH : document.getElementById("txtEmpGroup").value,
       ATK : document.getElementById("txtATK").value,
-      ATKimg : sessionStorage.getItem("ATKimg"),
       CampRound : sCampRound,
       EmpType : sEmpType,
       TimeStamp : TimeStampDate,
       DateTime : dateString
     });
   }
+
+/*
+  if(EidBootMember!="") {
+  alert("(2)EidBootMember="+EidBootMember);
+    dbBootMember.doc(EidBootMember).update({
+      LineID : sessionStorage.getItem("LineID"),
+      LineName : sessionStorage.getItem("LineName"),
+      LinePicture : sessionStorage.getItem("LinePicture"),
+      StatusRegister : 1
+    });
+  }
+*/
+  //alert("Save Done"); 
   WaitingPage();
   document.getElementById('myRegister').style.display='none';
   document.getElementById('myTimer').style.display='block';
@@ -424,6 +409,8 @@ function checkZero(data){
 }
 
 
+
+
 function phone_formatting(ele,restore) {
   var new_number,
       selection_start = ele.selectionStart,
@@ -449,8 +436,8 @@ function phone_formatting(ele,restore) {
   }
   else {
     new_number = number;
-  } 
-  ele.value =  (new_number.length > 12) ? new_number.substring(12,0) : new_number;
+  }
+  ele.value =  (new_number.length > 12) ? new_number.substring(12,0) : new_number; 
   if (new_number.slice(-1) === '-' && restore === false
       && (new_number.length === 8 && selection_end === 7)
           || (new_number.length === 4 && selection_end === 3)) {
@@ -464,7 +451,6 @@ function phone_formatting(ele,restore) {
   ele.setSelectionRange(selection_start, selection_end);
 }
   
-
 function phone_number_check(field,e) {
   var key_code = e.keyCode,
       key_string = String.fromCharCode(key_code),
@@ -510,54 +496,3 @@ function phone_number_check(field,e) {
 //}
 
 
-
-function Upload1() {
-  document.getElementById("SelectWOW1").onclick = function(e){
-    var input = document.createElement('input');
-    input.type = 'file';
-    input.onchange = e=> {
-      files = e.target.files;
-      reader = new FileReader();
-      reader.onload = function() {
-        document.getElementById("PicWOW1").src = reader.result;
-        //alert("Update done");
-      }
-      reader.readAsDataURL(files[0]);
-      }
-    input.click();
-  }
-  document.getElementById('test').onclick = function(){
-    //alert("test");
-    CallTimeStamp();
-    ImgName = sCampRound+"-"+sessionStorage.getItem("EmpID")+"-"+DateTimeStamp;
-    //alert(ImgName);
-    //if(document.getElementById("PicWOW1").src=="") {
-    //  alert("Upload ภาพที่ได้ทำการแคปหน้าจอไว้");
-    //  exit();
-    //}
-    var uploadTask = firebase.storage().ref('ATK/'+ImgName+".jpg").put(files[0]);
-    uploadTask.on('state_changed', function(snapshot){
-      //var progress = (snapshot.bytesTranferred / snapshot.totalBytes) * 100;
-      //mission_wow = "<div class='headwow'><u>กิจกรรมที่ 1</u> :  โชว์คะแนน WOW ของคุณ</div>";
-      //$("#DisplayHeader").html(mission_wow);
-      //document.getElementById("id01").style.display = "none";
-      //document.getElementById("id05").style.display = "block";
-    },
-    function(error) {
-      alert('error in save the image');
-    },
-
-    function() {
-      uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
-        sessionStorage.setItem("ATKimg", url);
-        ClickSaveProfile();
-      }
-    );
-
-  });
-  }
-}
-
-function CallTimeStamp() {
-    DateTimeStamp = Math.round(Date.now() / 1000);
-}
