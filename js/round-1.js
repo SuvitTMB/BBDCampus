@@ -274,7 +274,7 @@ function WaitingPage() {
     if(sDateTime!="") {
       str +='<div style="color:#ccc;font-size:11px;font-weight: 300;">เมื่อวันที่ : '+ sDateTime +'</div>';
     }
-    alert(sessionStorage.getItem("ATKimg"));
+    //alert(sessionStorage.getItem("ATKimg"));
     if(sessionStorage.getItem("ATKimg")!=null) {
       str +='<div class="btn-t4" onclick="showATK()" style="margin-top:10px;width:250px;">แสดงผล ATK ก่อนเข้างาน</div>';
     }
