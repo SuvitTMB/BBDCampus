@@ -141,7 +141,8 @@ function CheckRegister() {
       sessionStorage.setItem("EmpID", doc.data().EmpID);
       sessionStorage.setItem("EmpName", doc.data().EmpName);
       sessionStorage.setItem("CheckPass", doc.data().DateTime);
-      sessionStorage.setItem("ATKimg", profile.ATKimg);
+      sessionStorage.setItem("ATKimg", doc.data().ATKimg);
+      alert(doc.data().ATKimg);
       document.getElementById('OpenBootCamp').style.display='none';
       document.getElementById('myRegister').style.display='none';
       document.getElementById('myTimer').style.display='block';
