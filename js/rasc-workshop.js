@@ -293,7 +293,7 @@ function showATK() {
   //str +='<div class="profile-txt" style="font-size:12px;color:#002d63;">ข้อมูลผู้แจ้งผล ATK</div>';
   str +='<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="profile-member" style="width:60px;"></div>';
   str +='<div style="color:#0056ff;font-weight: 600;margin-top:15px;">คุณ'+sessionStorage.getItem("EmpName")+'</div>';
-  str +='<div style="color:#0056ff;">สังกัด : '+sessionStorage.getItem("EmpGroup")+'</div>';
+  //str +='<div style="color:#0056ff;">สังกัด : '+sessionStorage.getItem("EmpGroup")+'</div>';
   str +='<div style="color:#ccc;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+sDateTime+'</div>';
   //str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:20px;width:220px;">ดูรายละเอียดเว็บไซต์</div>';
   $("#MyWating").html(str);    
@@ -317,7 +317,8 @@ function ClickSaveProfile() {
   if(sCheckBottom==5) {
     sATK = document.getElementById("txtATK").value;
     sessionStorage.setItem("EmpID", document.getElementById("txtEmpID").value);
-    //alert(sessionStorage.getItem("EmpID"));
+    sessionStorage.setItem("EmpName", document.getElementById("txtEmpName").value);
+   //alert(sessionStorage.getItem("EmpID"));
     CheckMember();
     SaveData();
   }
