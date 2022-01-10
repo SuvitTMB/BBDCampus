@@ -317,7 +317,7 @@ function ClickSaveProfile() {
   if(sCheckBottom==5) {
     sATK = document.getElementById("txtATK").value;
     sessionStorage.setItem("EmpID", document.getElementById("txtEmpID").value);
-    sessionStorage.setItem("EmpName", document.getElementById("txtEmpName").value);
+    sessionStorage.setItem("EmpName", document.getElementById("txtEmpName").value); 
    //alert(sessionStorage.getItem("EmpID"));
     CheckMember();
     SaveData();
