@@ -13,7 +13,7 @@ var Eid = "";
 var EidBootCamp = "";
 var EidBootRegister = "";
 var EidBootMember = "";
-  dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
 var sDateRegister = "";
 var i = 0;
 const x = document.querySelectorAll(`div.com[min="${i}"]`);
@@ -330,6 +330,7 @@ function ClickSaveProfile() {
 
 
 function SaveData() {
+  NewDate();
   var eSpace = "";
   var eEmpGroup = "other";
   NewDate();
