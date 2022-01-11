@@ -260,7 +260,8 @@ function WaitingPage() {
       sessionStorage.setItem("EmpID", doc.data().EmpID);
       sessionStorage.setItem("EmpName", doc.data().EmpName);
     });
-    str +='<div class="title_container"><div class="title-head">ยืนยันการลงทะเบียนเข้าร่วมงาน<br>RASC Workshop</div></div>';
+    str +='<div class="title_container"><div class="title-head">ยืนยันการลงทะเบียนเข้าร่วมงาน<br>Retail Alternative Channel</div></div>';
+    str +='<div class="profile-txt" style="margin-top:-25px;font-size:12px;">'+ sEmpType +'</div>';
     str +='<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="profile-member"></div>';
     str +='<div class="profile-txt">'+ sessionStorage.getItem("LineName") +'</div>';
     str +='<div><div style="padding-top:15px;color:#f68b1f;font-weight: 600;">คุณ'+sessionStorage.getItem("EmpName")+'</div>';
@@ -286,7 +287,7 @@ function WaitingPage() {
 
 function showATK() {
   var str = "";
-  str +='<div class="title_container"><div class="title-head">แสดงผล ATK สำหรับเข้าร่วมงาน<br>RASC Workshop</div></div>';
+  str +='<div class="title_container"><div class="title-head">แสดงผล ATK สำหรับเข้าร่วมงาน<br>Retail Alternative Channel</div></div>';
   str +='<div class="profile-txt" style="margin-top:-25px;font-size:12px;">'+ sEmpType +'</div>';
   str +='<div><img src="'+ sessionStorage.getItem("ATKimg") +'" style="width:370px;"></div>';
   str +='<div style="padding:10px;color:#002d63;font-weight: 600;">แจ้งผล ATK เป็น : <font color="#f68b1f">'+sATK+'</font></div>';
@@ -331,6 +332,7 @@ function SaveData() {
   var eEmpGroup = "other";
   NewDate();
   var TimeStampDate = Math.round(Date.now() / 1000);
+  dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
   sDateTime = dateString;
   sessionStorage.setItem("CheckPass", sDateTime);
   if(document.getElementById("txtEmpGroup").value!="OTHER") {
