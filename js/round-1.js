@@ -13,7 +13,7 @@ var Eid = "";
 var EidBootCamp = "";
 var EidBootRegister = "";
 var EidBootMember = "";
-var dateString = "";
+var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
 var sDateRegister = "";
 var i = 0;
 const x = document.querySelectorAll(`div.com[min="${i}"]`);
@@ -119,6 +119,7 @@ function CheckBootCampOpen() {
       sCheckOpen = doc.data().CampName;
       sCampRound = doc.data().CampRound;
       sLINERegister = doc.data().LINERegister;
+      sessionStorage.setItem("CampName", doc.data().CampName);
     });
     //alert(sCheckOpen);
     //if(sCheckOpen!="") {
@@ -263,6 +264,7 @@ function WaitingPage() {
       sessionStorage.setItem("EmpName", doc.data().EmpName);
     });
     str +='<div class="title_container"><div class="title-head">ยินดีต้อนรับสู่<br>BBD CAMPUS Specialist Program 2022</div></div>';
+    str +='<div class="profile-txt" style="margin-top:-25px;font-size:12px;">'+ sessionStorage.getItem("CampName") +'</div>';
     str +='<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="profile-member"></div>';
     str +='<div class="profile-txt">'+ sessionStorage.getItem("LineName") +'</div>';
     str +='<div><div style="padding-top:15px;color:#f68b1f;font-weight: 600;">คุณ'+sessionStorage.getItem("EmpName")+'</div>';
@@ -289,7 +291,7 @@ function WaitingPage() {
 function showATK() {
   var str = "";
   str +='<div class="title_container"><div class="title-head">แสดงผล ATK สำหรับเข้าร่วมงาน<br>BBD CAMPUS Specialist Program 2022</div></div>';
-  str +='<div class="profile-txt" style="margin-top:-25px;font-size:12px;">สำหรับรอบอบรม : '+ sEmpType +'</div>';
+  str +='<div class="profile-txt" style="margin-top:-25px;font-size:12px;">สำหรับ : '+ sessionStorage.getItem("CampName") +'</div>';
   str +='<div><img src="'+ sessionStorage.getItem("ATKimg") +'" style="width:370px;"></div>';
   str +='<div style="padding:10px;color:#002d63;font-weight: 600;">แจ้งผล ATK เป็น : <font color="#f68b1f">'+sATK+'</font></div>';
   //str +='<div class="profile-txt" style="font-size:12px;color:#002d63;">ข้อมูลผู้แจ้งผล ATK</div>';
@@ -524,8 +526,5 @@ function phone_number_check(field,e) {
 //document.getElementById('txtEmpPhone').onkeyup = function(e) {
 //  phone_number_check(this,e);
 //}
-
-
-
 
 
