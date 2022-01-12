@@ -527,7 +527,7 @@ function phone_number_check(field,e) {
 //document.getElementById('txtEmpPhone').onkeyup = function(e) {
 //  phone_number_check(this,e);
 //}
-
+ 
 
 
 
