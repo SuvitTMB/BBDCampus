@@ -45,12 +45,10 @@ $(document).ready(function () {
   str += '<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="add-profile" width="100px"></div>';
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
-*/    
+  */
   main()
   Connect_DB();
   CheckBootCampOpen();
-  //CheckRegister();
-  //CheckData(); 
 });
 
 
@@ -128,7 +126,8 @@ function CheckBootCampOpen() {
     //  str += '<div class="btn-t3" style="margin-top:20px;cursor: default;width:220px;">ขณะนี้ระบบ<br>ยังไม่เปิดลงทะเบียน</div>';
     //}
     $("#gotoLink").html(str);  
-    //OpenForm();
+    //OpenForm();\
+    //CheckMember();
     CheckRegister();
   });
 }
@@ -161,8 +160,24 @@ function CheckRegister() {
       document.getElementById('loading').style.display='none';
       document.getElementById('gotoLink').style.display='block';
     } else {
+      //alert("check member");
+      CheckMember();
       WaitingPage();
     }
+  });
+}
+
+
+
+function getEid() {
+  dbBootRegister.where('LineID','==',sessionStorage.getItem("LineID"))
+  .where('CampRound','==',xRound)
+  .limit(1)
+  .get().then((snapshot)=> {
+    snapshot.forEach(doc=> {
+      EidBootRegister = doc.id;
+    });
+    //alert("===="+EidBootRegister);
   });
 }
 
@@ -171,11 +186,6 @@ function CheckRegister() {
 function CheckData() {
   document.getElementById('BootCampLoading').style.display='none';
   document.getElementById('myRegister').style.display='block';
-  //alert(sessionStorage.getItem("LineID"));
-  //console.log(sessionStorage.getItem("LineID"));
-  //dbCYCProfile.where('LineID','==',sessionStorage.getItem("LineID"))
-  //db.where('statusconfirm','==',parseInt(sstatusconfirm))
-  //alert(sessionStorage.getItem("LineID"));
   db.where('lineID','==',sessionStorage.getItem("LineID"))
   .get().then((snapshot)=> {
     snapshot.forEach(doc=> {
@@ -185,15 +195,8 @@ function CheckData() {
       sessionStorage.setItem("EmpName", doc.data().empName);
       sessionStorage.setItem("EmpPhone", doc.data().empPhone);
       sessionStorage.setItem("EmpGroup", doc.data().empRH);
-      //alert(doc.data().empPhone);
-      //if(doc.data().CYCStatus==1) {
-        //sessionStorage.setItem("CYCStatus", doc.data().CYCStatus);
-        //window.location.href = 'ttbdrive.html';
-      //}
       document.getElementById("txtEmpID").value = doc.data().empID;
       document.getElementById("txtEmpName").value = doc.data().empName;
-      document.getElementById("txtEmpPhone").value = doc.data().empPhone;
-      //document.getElementById("txtEmpPhone").value = doc.data().empPhone;
       document.getElementById("txtEmpGroup").value = doc.data().empRH;
       WaitingPage();
     });
@@ -224,7 +227,6 @@ function EditData() {
 }
 
 
-
 function CheckMember() {
   dbBootMember.where('EmpID','==',parseFloat(sessionStorage.getItem("EmpID")))
   .where('EmpType','==',sEmpType)
@@ -235,6 +237,10 @@ function CheckMember() {
       xEmpType = doc.data().EmpType;
       sessionStorage.setItem("EmpID", doc.data().EmpID);
       sessionStorage.setItem("EmpName", doc.data().EmpName);
+      sessionStorage.setItem("EmpGroup", doc.data().EmpBranch);
+      sessionStorage.setItem("EmpTable", doc.data().EmpTable);
+      sessionStorage.setItem("TimeRegister", doc.data().TimeRegister);
+      //alert(doc.data().EmpBranch);
       dbBootMember.doc(EidBootMember).update({
         LineID : sessionStorage.getItem("LineID"),
         LineName : sessionStorage.getItem("LineName"),
@@ -248,6 +254,7 @@ function CheckMember() {
 
 
 function WaitingPage() {
+  //alert("EidBootRegister==="+EidBootRegister);
   if(xCheckRegister==1) {
     document.getElementById('BootCampLoading').style.display='none';
   }
@@ -276,11 +283,15 @@ function WaitingPage() {
     if(sDateTime!="") {
       str +='<div style="color:#ccc;font-size:11px;font-weight: 300;">เมื่อวันที่ : '+ sDateTime +'</div>';
     }
-    //alert(sessionStorage.getItem("ATKimg"));
     if(sessionStorage.getItem("ATKimg")!=null) {
-      str +='<div class="btn-t4" onclick="showATK()" style="margin-top:10px;width:250px;">แสดงผล ATK ก่อนเข้างาน</div>';
+      str +='<div class="btn-t3" onclick="showATK()" style="margin-top:10px;width:270px;">1. แสดงผล ATK ก่อนเข้างาน</div>';
     }
-    str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:10px;width:250px;">ดูรายละเอียดเว็บไซต์</div>';
+    if(sessionStorage.getItem("EmpTable")!=null) {
+      str +='<div class="btn-t4" onclick="WelcomePack()" style="margin-top:10px;width:270px;">2. คลิกเพื่อรับ Welcome Pack</div>';
+    } else {
+      str +='<div class="btn-t4" style="margin-top:10px;width:270px;background:#999999;">2. คลิกเพื่อรับ Welcome Pack</div>';
+    }
+    str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:10px;width:270px;">3. ดูรายละเอียดเว็บไซต์</div>';
     str +='</div></center>';
     $("#MyWating").html(str);    
 
@@ -290,7 +301,8 @@ function WaitingPage() {
 
 function showATK() {
   var str = "";
-  str +='<div class="title_container"><div class="title-head">แสดงผล ATK สำหรับเข้าร่วมงาน<br>BBD CAMPUS Specialist Program 2022</div></div>';
+  str +='<div class="title_container"><div class="title-head">BBD CAMPUS Specialist Program 2022';
+  str +='<div style="font-size:13px;color:#f68b1f;">แสดงผล ATK สำหรับเข้าร่วมงาน</div></div></div>';
   str +='<div class="profile-txt" style="margin-top:-25px;font-size:12px;">สำหรับ : '+ sessionStorage.getItem("CampName") +'</div>';
   str +='<div><img src="'+ sessionStorage.getItem("ATKimg") +'" style="width:370px;"></div>';
   str +='<div style="padding:10px;color:#002d63;font-weight: 600;">แจ้งผล ATK เป็น : <font color="#f68b1f">'+sATK+'</font></div>';
@@ -299,26 +311,85 @@ function showATK() {
   str +='<div style="color:#0056ff;font-weight: 600;margin-top:15px;">คุณ'+sessionStorage.getItem("EmpName")+'</div>';
   str +='<div style="color:#0056ff;">สังกัด : '+sessionStorage.getItem("EmpGroup")+'</div>';
   str +='<div style="color:#ccc;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+sDateTime+'</div>';
-  str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:20px;width:220px;">ดูรายละเอียดเว็บไซต์</div>';
+      //alert("showATK==="+sessionStorage.getItem("EmpTable"));
+  if(sessionStorage.getItem("EmpTable")!=null) {
+    //document.getElementById('ClickWelcomePack').style.display='block';
+    str +='<div class="btn-t4" onclick="WelcomePack()" style="margin-top:10px;width:270px;">2. คลิกเพื่อรับ Welcome Pack</div>';
+  }
+  str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:10px;width:270px;">3. ดูรายละเอียดเว็บไซต์</div>';
   $("#MyWating").html(str);    
 }
 
 
+
+function WelcomePack() {
+  getEid();
+  //alert("EidBootRegister==="+EidBootRegister);
+  var str = "";
+  str +='<div class="title_container"><div class="title-head">BBD CAMPUS Specialist Program 2022';
+  str +='<div style="font-size:13px;color:#f68b1f;">แสดงหน้านี้เพื่อรับกล่อง Welcome Pack</div></div></div>';
+  str +='<div class="profile-txt" style="margin-top:-25px;font-size:12px;">สำหรับผู้เข้าอบรม : '+ sessionStorage.getItem("CampName") +'</div>';
+  if(sessionStorage.getItem("EmpTable")==0) {
+    str +='<div style="margin-top:-10px;"><img src="./img/box-git.gif" style="width:370px;"></div>';
+    str +='<div id="ClickWelcomePack">';
+    str +='<div onclick="getWelcomePack()" class="btn-t4" style="margin-top:0px;width:270px;">สำหรับเจ้าหน้าที่กดเท่านั้น<br>ยืนยันการรับ Welcome Pack</div>';
+    str +='<div style="color:#ff0000;padding:8px;">ห้ามกดปุ่มรับ Welcome Pack เองนะครับ</div>';
+    str +='</div>';
+    str +='<div style="padding:30px;display: none;" id="loadingPack"><img src="./img/loading.gif"><div style="padding-top:15px;color:#f68b1f;">L o a d i n g</div></div>';
+  } else {
+    str +='<div style="margin-top:-10px;"><img src="./img/brown-bear.gif" style="width:370px;"></div>';
+    str +='<div style="color:#ff0000;font-weight: 600;padding:12px;background-color: #FFFF00">ท่านได้ทำการรับ Welcome Pack ไปแล้ว<br>เมื่อวันที่ '+sessionStorage.getItem("TimeRegister")+'</div>';
+  }
+  str +='<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="profile-member" style="width:60px;"></div>';
+  str +='<div style="color:#0056ff;font-weight: 600;margin-top:15px;">คุณ'+sessionStorage.getItem("EmpName")+'</div>';
+  str +='<div style="color:#0056ff;">สังกัด : '+sessionStorage.getItem("EmpGroup")+'</div>';
+  str +='<div style="color:#ccc;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+sDateTime+'</div>';
+  if(sessionStorage.getItem("ATKimg")!=null) {
+    str +='<div class="btn-t2" onclick="showATK()" style="margin-top:10px;width:270px;">1. แสดงผล ATK ก่อนเข้างาน</div>';
+  }
+  str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:10px;width:270px;">3. ดูรายละเอียดเว็บไซต์</div>';
+  $("#MyWating").html(str);    
+}
+
+
+
+function getWelcomePack() {
+  NewDate();
+  document.getElementById('ClickWelcomePack').style.display='none';
+  document.getElementById('loadingPack').style.display='block';
+  sessionStorage.setItem("EmpTable", 1);
+  sessionStorage.setItem("TimeRegister", dateString);
+  dbBootMember.doc(EidBootMember).update({
+    EmpTable : 1,
+    TimeRegister : dateString
+  });
+  dbBootRegister.doc(EidBootRegister).update({
+    EmpMember : 1,
+    TimegetBox : dateString
+  });
+  //alert(sessionStorage.getItem("TimeRegister"));
+  WelcomePack();
+}
+
+
+
 var sCheckBottom = 0;
 function ClickSaveProfile() {
+  sCheckBottom = 0;
   //alert($("input[type=checkbox][id=cb1]:checked").val());
   stxtEmpID = document.getElementById("txtEmpID").value;
   stxtEmpName = document.getElementById("txtEmpName").value;
-  stxtEmpPhone = document.getElementById("txtEmpPhone").value;
+  //stxtEmpPhone = document.getElementById("txtEmpPhone").value;
   stxtEmpGroup = document.getElementById("txtEmpGroup").value;
   stxtATK = document.getElementById("txtATK").value;
   if(stxtEmpID !== null && stxtEmpID !== '') { sCheckBottom = sCheckBottom+1; }
   if(stxtEmpName !== null && stxtEmpName !== '') { sCheckBottom = sCheckBottom+1; }
-  if(stxtEmpPhone !== null && stxtEmpPhone !== '') { sCheckBottom = sCheckBottom+1; }
+  //if(stxtEmpPhone !== null && stxtEmpPhone !== '') { sCheckBottom = sCheckBottom+1; }
   if(stxtEmpGroup !== null && stxtEmpGroup !== '') { sCheckBottom = sCheckBottom+1; }
   if(stxtATK !== null && stxtATK !== '') { sCheckBottom = sCheckBottom+1; }
+  //alert(sCheckBottom);
 
-  if(sCheckBottom==5) {
+  if(sCheckBottom==4) {
     sATK = document.getElementById("txtATK").value;
     sessionStorage.setItem("EmpID", document.getElementById("txtEmpID").value);
     //alert(sessionStorage.getItem("EmpID"));
@@ -347,7 +418,7 @@ function SaveData() {
       empPicture : sessionStorage.getItem("LinePicture"),
       empID : document.getElementById("txtEmpID").value,
       empName : document.getElementById("txtEmpName").value,
-      empPhone : document.getElementById("txtEmpPhone").value,
+      //empPhone : document.getElementById("txtEmpPhone").value,
       empRH : document.getElementById("txtEmpGroup").value,
       empBr : eEmpGroup,
       statusconfirm : 2,
@@ -364,7 +435,7 @@ function SaveData() {
       empPicture : sessionStorage.getItem("LinePicture"),
       empID : document.getElementById("txtEmpID").value,
       empName : document.getElementById("txtEmpName").value,
-      empPhone : document.getElementById("txtEmpPhone").value,
+      //empPhone : document.getElementById("txtEmpPhone").value,
       empRH : document.getElementById("txtEmpGroup").value,
       empBr : eEmpGroup,
       DateRegister : dateString
@@ -378,10 +449,12 @@ function SaveData() {
       LinePicture : sessionStorage.getItem("LinePicture"),
       EmpID : document.getElementById("txtEmpID").value,
       EmpName : document.getElementById("txtEmpName").value,
-      EmpPhone : document.getElementById("txtEmpPhone").value,
+      //EmpPhone : document.getElementById("txtEmpPhone").value,
       EmpRH : document.getElementById("txtEmpGroup").value,
       ATK : document.getElementById("txtATK").value,
       ATKimg : sessionStorage.getItem("ATKimg"),
+      EmpMember : 0,
+      TimegetBox : eSpace,
       //logATK : sessionStorage.getItem("logATK"),
       CampRound : sCampRound,
       EmpType : sEmpType,
