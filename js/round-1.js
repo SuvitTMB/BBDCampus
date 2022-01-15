@@ -20,7 +20,7 @@ const x = document.querySelectorAll(`div.com[min="${i}"]`);
 var sCheckOpen = "";
 //var sEmpType = "";
 var sCampRound = "";
-var sDateTime = "";
+var sDateTime = ""; 
 var sLINERegister = "";
 var sATK = "";
 var xRound = "R1";
@@ -29,9 +29,10 @@ var parts1 = [];
 parts = xRound.split("-"); //สร้างString arry ชื่อparts
 //alert(parts[0]);
 var FinalRound = parts[0]; // 004  //String part1 เก็บค่าparts[0]
+var FinalRoundSplit = parts[1]; // 004  //String part1 เก็บค่าparts[0]
 //var part2 = parts[1]; // 034556  //String part2 เก็บค่าparts[1]
 //alert(FinalRound);
-
+//alert(FinalRoundSplit);
 
 $(document).ready(function () {
   /*
@@ -45,7 +46,7 @@ $(document).ready(function () {
   str += '<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="add-profile" width="100px"></div>';
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
-  */  
+  */
   main()
   Connect_DB();
   CheckBootCampOpen();
@@ -107,7 +108,7 @@ function Connect_DB() {
 
 
 function CheckBootCampOpen() {
-  if(sessionStorage.getItem("EmpID")==null) { main(); }
+  //if(sessionStorage.getItem("EmpID")==null) { main(); }
   var str = "";
   dbBootCamp.where('CampRound','==',xRound)
   .limit(1)
@@ -243,12 +244,17 @@ function CheckMember() {
       sessionStorage.setItem("EmpTable", doc.data().EmpTable);
       sessionStorage.setItem("TimeRegister", doc.data().TimeRegister);
       //alert(doc.data().EmpBranch);
-      dbBootMember.doc(EidBootMember).update({
-        LineID : sessionStorage.getItem("LineID"),
-        LineName : sessionStorage.getItem("LineName"),
-        LinePicture : sessionStorage.getItem("LinePicture"),
-        StatusRegister : 1
-      });
+      if(FinalRoundSplit==undefined) {
+        if(doc.data().StatusRegister==0) {
+          dbBootMember.doc(EidBootMember).update({
+            LineID : sessionStorage.getItem("LineID"),
+            LineName : sessionStorage.getItem("LineName"),
+            LinePicture : sessionStorage.getItem("LinePicture"),
+            StatusRegister : 1
+          });        
+
+      }
+      }
     });
     //alert("(1)EidBootMember="+EidBootMember);
   });
@@ -289,10 +295,10 @@ function WaitingPage() {
     if(sessionStorage.getItem("ATKimg")!=null) {
       str +='<div class="btn-t3" onclick="showATK()" style="margin-top:10px;width:270px;">1. แสดงผล ATK ก่อนเข้างาน</div>';
     }
-    if(sessionStorage.getItem("EmpTable")!=null) {
+    if(sessionStorage.getItem("EmpTable")!=null && FinalRoundSplit==undefined) {
       str +='<div class="btn-t4" onclick="WelcomePack()" style="margin-top:10px;width:270px;">2. คลิกเพื่อรับ Welcome Pack</div>';
     } else {
-      str +='<div class="btn-t4" style="margin-top:10px;width:270px;background:#ccc;cursor:default;color:#999;">2. คลิกเพื่อรับ Welcome Pack</div>';
+      str +='<div class="btn-t4" style="margin-top:10px;width:270px;background:#ddd;cursor:default;color:#999;">2. คลิกเพื่อรับ Welcome Pack</div>';
     }
     str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:10px;width:270px;">3. ดูรายละเอียดเว็บไซต์</div>';
     str +='</div></center>';
@@ -315,9 +321,10 @@ function showATK() {
   str +='<div style="color:#0056ff;">สังกัด : '+sessionStorage.getItem("EmpGroup")+'</div>';
   str +='<div style="color:#999;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+sDateTime+'</div>';
       //alert("showATK==="+sessionStorage.getItem("EmpTable"));
-  if(sessionStorage.getItem("EmpTable")!=null) {
-    //document.getElementById('ClickWelcomePack').style.display='block';
+  if(sessionStorage.getItem("EmpTable")!=null && FinalRoundSplit==undefined) {
     str +='<div class="btn-t4" onclick="WelcomePack()" style="margin-top:10px;width:270px;">2. คลิกเพื่อรับ Welcome Pack</div>';
+  } else {
+    str +='<div class="btn-t4" style="margin-top:10px;width:270px;background:#ddd;cursor:default;color:#999;">2. คลิกเพื่อรับ Welcome Pack</div>';
   }
   str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:10px;width:270px;">3. ดูรายละเอียดเว็บไซต์</div>';
   $("#MyWating").html(str);    
@@ -360,16 +367,22 @@ function getWelcomePack() {
   NewDate();
   document.getElementById('ClickWelcomePack').style.display='none';
   document.getElementById('loadingPack').style.display='block';
-  sessionStorage.setItem("EmpTable", 1);
-  sessionStorage.setItem("TimeRegister", dateString);
-  dbBootMember.doc(EidBootMember).update({
-    EmpTable : 1,
-    TimeRegister : dateString
-  });
-  dbBootRegister.doc(EidBootRegister).update({
-    EmpMember : 1,
-    TimegetBox : dateString
-  });
+  //alert(sessionStorage.getItem("EmpTable"));
+  if(FinalRoundSplit==undefined) {
+    if(sessionStorage.getItem("EmpTable")==0) {
+      dbBootMember.doc(EidBootMember).update({
+        EmpTable : 1,
+        TimeRegister : dateString
+      });
+      dbBootRegister.doc(EidBootRegister).update({
+        EmpMember : 1,
+        TimegetBox : dateString
+      });
+      sessionStorage.setItem("EmpTable", 1);
+      sessionStorage.setItem("TimeRegister", dateString);
+    }
+  }
+
   //alert(sessionStorage.getItem("TimeRegister"));
   WelcomePack();
 }
@@ -390,14 +403,18 @@ function ClickSaveProfile() {
   //if(stxtEmpPhone !== null && stxtEmpPhone !== '') { sCheckBottom = sCheckBottom+1; }
   if(stxtEmpGroup !== null && stxtEmpGroup !== '') { sCheckBottom = sCheckBottom+1; }
   if(stxtATK !== null && stxtATK !== '') { sCheckBottom = sCheckBottom+1; }
+  if(sessionStorage.getItem("ATKimg") !== null) { sCheckBottom = sCheckBottom+1; }
   //alert(sCheckBottom);
 
-  if(sCheckBottom==4) {
+  if(sCheckBottom==5) {
     sATK = document.getElementById("txtATK").value;
     sessionStorage.setItem("EmpID", document.getElementById("txtEmpID").value);
     //alert(sessionStorage.getItem("EmpID"));
     CheckMember();
     SaveData();
+  } else {
+    //alert(sessionStorage.getItem("ATKimg"));
+    alert("คุณยังกรอกข้อมูลไม่ครบถ้วน");
   }
 }
 
