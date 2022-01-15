@@ -108,7 +108,7 @@
       <div class="form_container">
         <div class="title_container">
           <div class="title-head">ลงทะเบียน<br>BBD CAMPUS Specialist Program 2022</div>
-          <div style="padding-top:15px;"><img src ="./img/logo.png" style="width:100%; max-width:300px;"></div>
+          <div style="padding-top:15px;"><img src ="./img/logo.png" style="width:100%; max-width:360px;"></div>
           <div id="OpenRound"></div>
         </div>
       </div>
@@ -140,16 +140,19 @@
                   <span><i aria-hidden="true" class="fa fa-user"></i></span>
                   <input type="text" class="form-control" id="txtEmpName" placeholder="ชื่อ-นามสกุล" required/>
                 </div>
+<!--
                 <div class="input_field" style="width:100% !important;"> 
                   <span><i aria-hidden="true" class="fa fa-phone"></i></span>
                   <input type="text" class="form-control" id="txtEmpPhone" placeholder="หมายเลขโทรศัพท์" required/>
+                </div>
+-->
                   <!--<input type="text" class="form-control" id="txtEmpPhone" placeholder="หมายเลขโทรศัพท์" pattern="[+-]?[0-9]" required/>-->
                   <!--<div id="msg"></div>-->
-                </div>
                 <div>สังกัด <font color="#ff0000">(ไม่ได้เป็นพนักงาน ttb เลือก บุคคลภายนอกธนาคาร)</font></div>
                 <div class="input_field select_option">
                   <select id="txtEmpGroup" class="form-control" style="font: 400 12px ekachon-regular !important;" required/>
                     <option></option>
+<!--
                     <option value="RH1">สำนักงานภาคธุรกิจสาขา 1</option>
                     <option value="RH2">สำนักงานภาคธุรกิจสาขา 2</option>
                     <option value="RH3">สำนักงานภาคธุรกิจสาขา 3</option>
@@ -167,7 +170,8 @@
                     <option value="RSM">Retail Sales Management</option>
                     <option value="RSOC">Retail Strategy and Omni Channel Experience</option>
                     <option value="WB">Wealth Banking</option>
-                    <option value="OTHER-ttb">พนักงานในกลุ่มอื่นๆ</option>
+-->
+                    <option value="ttb bank">พนักงาน ttb bank</option>
                     <option value="OTHER-Outsider">บุคคลภายนอกธนาคาร</option>
                   </select>
                   <div class="select_arrow"></div>
@@ -183,16 +187,16 @@
                   <div class="select_arrow"></div>
                 </div>
 
-                <div>Upload Files รูปถ่าย ATK ของคุณ (ถ้ามี)</div>
+                <div>Upload Files รูปถ่าย ATK ของคุณ</div>
                 <div style="border:1px solid #cccccc; width:100%; padding:15px; border-radius: 5px; margin-top:5px; background:#f1f1f1;">
                   <center>
                     <div id="CheckUpload" style="font-size: 11px; color:#0056ff;"><input type="file" id="files" style="cursor: pointer;" multiple /><div>
-                	<div id="Fileimguploading" style="display: none;">
-                		<div style="padding:40px;"><img src="./img/loading.gif"></div>
-                	</div>
-                	<div id="DisplayUploading" style="display: none; width:80%;">
-                		<div id="MyATKUPloading"></div>
-                	</div>
+                  <div id="Fileimguploading" style="display: none;">
+                    <div style="padding:40px;"><img src="./img/loading.gif"></div>
+                  </div>
+                  <div id="DisplayUploading" style="display: none; width:80%;">
+                    <div id="MyATKUPloading"></div>
+                  </div>
                   </center>
                 </div>
 
@@ -223,9 +227,12 @@
 
 
   <div class="clr"></div>
-  <div id="isLoggedIn" style="color:#f68b1f;"></div>
+  <!--<div id="isLoggedIn" style="color:#f68b1f;"></div>-->
   <footer class="tm-footer">
-      <center><div style="font-weight: 600; color:#000;">LINE Retail Society</div></center>
+      <center>
+        <div id="isLoggedIn" style="color:#f68b1f;"></div>
+        <div style="font-weight: 600; color:#000;">LINE Retail Society</div>
+      </center>
   </footer>
 
 
@@ -244,7 +251,7 @@
 <!--
 <script src="./js/session.js"></script>
 -->
-<script src="./js/round-1day2.js"></script>
+<script src="./js/round-1.js"></script>
 <script src='https://use.fontawesome.com/4ecc3dbb0b.js'></script>
 
 <script>
@@ -253,8 +260,8 @@ document.getElementById("files").addEventListener("change", function(e) {
   files = e.target.files;
   for (let i = 0; i < files.length; i++) {
     console.log(files[i]);
-  //document.getElementById('CheckUpload').style.display='none';	
- 	document.getElementById('Fileimguploading').style.display='block';	
+  //document.getElementById('CheckUpload').style.display='none';  
+  document.getElementById('Fileimguploading').style.display='block';  
     //document.getElementById('ShowButtonUpload').style.display='block';
     //document.getElementById('send').style.display='block';
   }
@@ -265,10 +272,10 @@ document.getElementById("files").addEventListener("change", function(e) {
       //create a storage reference
       var DateTimeStamp = Math.round(Date.now() / 1000);
       var ImgName = sCampRound+"-"+sessionStorage.getItem("EmpID")+"-"+DateTimeStamp;
-      var uploadTask = firebase.storage().ref('ATK/'+ImgName).put(files[i]);
+      var uploadTask = firebase.storage().ref('BBD-ATK/'+ImgName).put(files[i]);
       //var ImgName = "R1-08400-"+DateTimeStamp;
       //var storage = firebase.storage().ref('ATK/'+files[i].name);
-      var storage = firebase.storage().ref('ATK/'+ImgName);
+      var storage = firebase.storage().ref('BBD-ATK/'+ImgName);
       //var uploadTask = firebase.storage().ref('ATK/'+ImgName+".jpg").put(files[0]);
       //var storage = firebase.storage().ref(files[i].name);
 
@@ -292,14 +299,14 @@ document.getElementById("files").addEventListener("change", function(e) {
           uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
             sessionStorage.setItem("ATKimg", url);
             var a = "<div><center><img src='"+url+"' width='90%'></center></div>";
-  			$("#MyATKUPloading").html(a);   
-			document.getElementById('files').style.display='none';	
-			document.getElementById('DisplayUploading').style.display='block';	
-			document.getElementById('Fileimguploading').style.display='none';	
+        $("#MyATKUPloading").html(a);   
+      document.getElementById('files').style.display='none';  
+      document.getElementById('DisplayUploading').style.display='block';  
+      document.getElementById('Fileimguploading').style.display='none'; 
           }
           );
-		  //document.getElementById('Fileimguploading').style.display='none';	
-		  //document.getElementById('DisplayUploading').style.display='block';	
+      //document.getElementById('Fileimguploading').style.display='none'; 
+      //document.getElementById('DisplayUploading').style.display='block';  
           //document.getElementById("uploading").innerHTML += `${files[i].name} upoaded <br />`;
           //document.getElementById('send').style.display='none';
         }
