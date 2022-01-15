@@ -147,7 +147,7 @@ function LoadRegister() {
   var str = "";
   var sCountID = 0;
   //alert(sEmpType);
-  alert(CampRound);
+  alert(aCheckRound);
   dbBootRegister.where(CampRound,'==',aCheckRound)
   //dbBootRegister.where('EmpType','==',sEmpType)
   .orderBy('TimeStamp','desc')
