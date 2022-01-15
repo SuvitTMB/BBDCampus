@@ -120,9 +120,7 @@ var MemberINClass = 0;
 function LoadMember() {
   var str = "";
   //alert(sEmpType);
-  //dbBootMember.where('EmpType','==',sEmpType)
-	alert(CampRound);
-  dbBootMember.where(CampRound,'==',aCheckRound)	
+  dbBootMember.where('EmpType','==',sEmpType)
   .orderBy('ShortName','asc')
   .get().then((snapshot)=> {
   snapshot.forEach(doc=> {
@@ -149,7 +147,9 @@ function LoadRegister() {
   var str = "";
   var sCountID = 0;
   //alert(sEmpType);
-  dbBootRegister.where('EmpType','==',sEmpType)
+  alert(CampRound);
+  dbBootRegister.where(CampRound,'==',aCheckRound)
+  //dbBootRegister.where('EmpType','==',sEmpType)
   .orderBy('TimeStamp','desc')
   .get().then((snapshot)=> {
   snapshot.forEach(doc=> {
