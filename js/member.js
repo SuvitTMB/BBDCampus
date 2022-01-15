@@ -120,7 +120,8 @@ var MemberINClass = 0;
 function LoadMember() {
   var str = "";
   //alert(sEmpType);
-  dbBootMember.where('EmpType','==',sEmpType)
+  //dbBootMember.where('EmpType','==',sEmpType)
+  dbBootMember.where(CampRound,'==',aCheckRound)	
   .orderBy('ShortName','asc')
   .get().then((snapshot)=> {
   snapshot.forEach(doc=> {
