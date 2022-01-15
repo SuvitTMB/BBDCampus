@@ -121,6 +121,7 @@ function LoadMember() {
   var str = "";
   //alert(sEmpType);
   //dbBootMember.where('EmpType','==',sEmpType)
+	alert(CampRound);
   dbBootMember.where(CampRound,'==',aCheckRound)	
   .orderBy('ShortName','asc')
   .get().then((snapshot)=> {
