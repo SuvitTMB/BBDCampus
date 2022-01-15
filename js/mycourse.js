@@ -163,12 +163,12 @@ function LoadRegister() {
   var str = "";
   var sCountID = 0;
   //dbBootRegister.where('EmpType','==',sEmpType)
-  dbBootRegister.where('CampRound','==',sessionStorage.getItem("CampRound"))
+  dbBootRegister.where('CampRound','==',sessionStorage.getItem("CampRound")) 
   .orderBy('TimeStamp','desc')
   .get().then((snapshot)=> {
   snapshot.forEach(doc=> {
     sCountID = sCountID+1;
-		str += '<div class="box-member" onclick="OpenRegister(\''+ doc.id +'\')"><div><img src="'+ doc.data().LinePicture +'" class="img-register"></div><div class="txt-member">'+ doc.data().LineName +'</div></div>';
+	str += '<div class="box-member" onclick="OpenRegister(\''+ doc.id +'\')"><div><img src="'+ doc.data().LinePicture +'" class="img-register"></div><div class="txt-member">'+ doc.data().LineName +'</div></div>';
     });
     $("#DisplayRegister").html(str);  
     $("#DisplayCountRegister").html("<div>จำนวนลงทะเบียน : "+sCountID+" คน</div>");  
