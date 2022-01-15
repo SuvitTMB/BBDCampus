@@ -162,7 +162,8 @@ function LoadMember() {
 function LoadRegister() {
   var str = "";
   var sCountID = 0;
-  dbBootRegister.where('EmpType','==',sEmpType)
+  //dbBootRegister.where('EmpType','==',sEmpType)
+  dbBootRegister.where('CampRound','==',aCheckRound)
   .orderBy('TimeStamp','desc')
   .get().then((snapshot)=> {
   snapshot.forEach(doc=> {
