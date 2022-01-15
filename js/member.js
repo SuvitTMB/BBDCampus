@@ -176,7 +176,7 @@ function DisplayMenu(x) {
 	} else if(x==4) { 
 		document.getElementById("menu4").style.display = "block";
 	} else if(x==5) { 
-		LoadRegister();
+		LoadRegister(); 
 		document.getElementById("menu5").style.display = "block";
 	}
     //location.href = "view.html?gid="+x;
