@@ -177,7 +177,7 @@ function LoadRegister() {
 
 
 
-function DisplayMenu(x) {
+function DisplayMenu(x) { 
 	document.getElementById("menu1").style.display = "none";
 	document.getElementById("menu2").style.display = "none";
 	document.getElementById("menu3").style.display = "none";
