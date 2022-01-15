@@ -45,7 +45,7 @@ $(document).ready(function () {
   str += '<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="add-profile" width="100px"></div>';
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
-  */
+  */  
   main()
   Connect_DB();
   CheckBootCampOpen();
@@ -107,6 +107,7 @@ function Connect_DB() {
 
 
 function CheckBootCampOpen() {
+  if(sessionStorage.getItem("EmpID")==null) { main(); }
   var str = "";
   dbBootCamp.where('CampRound','==',xRound)
   .limit(1)
@@ -150,10 +151,11 @@ function CheckRegister() {
       sessionStorage.setItem("EmpName", doc.data().EmpName);
       sessionStorage.setItem("CheckPass", doc.data().DateTime);
       sessionStorage.setItem("ATKimg", doc.data().ATKimg);
-      sessionStorage.setItem("EmpGroup", doc.data().EmpGroup);
+      sessionStorage.setItem("EmpGroup", doc.data().EmpRH);
       document.getElementById('OpenBootCamp').style.display='none';
       document.getElementById('myRegister').style.display='none';
       document.getElementById('myTimer').style.display='block';
+      //alert(sessionStorage.getItem("EmpGroup"));
     });
     if(EidBootRegister=="") {
       //document.getElementById('OpenBootCamp').style.display='block';
@@ -260,7 +262,7 @@ function WaitingPage() {
   }
   var str = "";
   var xEmpType = "";
-  dbBootMember.where('EmpID','==',sessionStorage.getItem("EmpID"))
+  dbBootMember.where('EmpID','==',parseFloat(sessionStorage.getItem("EmpID")))
   .where('EmpType','==',sEmpType)
   .limit(1)
   .get().then((snapshot)=> {
@@ -270,18 +272,19 @@ function WaitingPage() {
       sessionStorage.setItem("EmpID", doc.data().EmpID);
       sessionStorage.setItem("EmpName", doc.data().EmpName);
     });
+    //alert(xEmpType);
     str +='<div class="title_container"><div class="title-head">ยินดีต้อนรับสู่<br>BBD CAMPUS Specialist Program 2022</div></div>';
     str +='<div class="profile-txt" style="margin-top:-25px;font-size:12px;">'+ sessionStorage.getItem("CampName") +'</div>';
     str +='<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="profile-member"></div>';
     str +='<div class="profile-txt">'+ sessionStorage.getItem("LineName") +'</div>';
     str +='<div><div style="padding-top:15px;color:#f68b1f;font-weight: 600;">คุณ'+sessionStorage.getItem("EmpName")+'</div>';
     if(xEmpType!="") {
-      str +='<div class="profile-txt1">ได้ทำการลงทะเบียนเข้าร่วมอบรม<br>หลักสูตร BBD Specialist Bootcamp<br><font color="#0056ff">รุ่น '+xEmpType+'</font></div>';
+      str +='<div class="profile-txt1" style="line-height: 1.2;color:#0056ff;">ยินดีต้อนรับผู้เข้าอบรมสู่ BBD Bootcamp<br>หลักสูตร BBD Specialist Bootcamp<br><font color="#0056ff">รุ่น '+xEmpType+'</font></div>';
     } else {
-      str +='<div class="profile-txt1">ได้ทำการลงทะเบียนเข้าร่วมงาน<br>BBD CAMPUS Specialist Program 2022<br><font color="#0056ff">รุ่น <b>'+sEmpType+'</b></font></div>';
+      str +='<div class="profile-txt1" style="line-height: 1.2;">ได้ลงทะเบียนเข้าร่วมงาน BBD Bootcamp<br>หลักสูตร BBD Specialist Bootcamp<br><font color="#0056ff">รุ่น '+sEmpType+'</font></div>';
     }
     if(sDateTime!="") {
-      str +='<div style="color:#ccc;font-size:11px;font-weight: 300;">เมื่อวันที่ : '+ sDateTime +'</div>';
+      str +='<div style="color:#999;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+ sDateTime +'</div>';
     }
     if(sessionStorage.getItem("ATKimg")!=null) {
       str +='<div class="btn-t3" onclick="showATK()" style="margin-top:10px;width:270px;">1. แสดงผล ATK ก่อนเข้างาน</div>';
@@ -289,7 +292,7 @@ function WaitingPage() {
     if(sessionStorage.getItem("EmpTable")!=null) {
       str +='<div class="btn-t4" onclick="WelcomePack()" style="margin-top:10px;width:270px;">2. คลิกเพื่อรับ Welcome Pack</div>';
     } else {
-      str +='<div class="btn-t4" style="margin-top:10px;width:270px;background:#999999;">2. คลิกเพื่อรับ Welcome Pack</div>';
+      str +='<div class="btn-t4" style="margin-top:10px;width:270px;background:#ccc;cursor:default;color:#999;">2. คลิกเพื่อรับ Welcome Pack</div>';
     }
     str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:10px;width:270px;">3. ดูรายละเอียดเว็บไซต์</div>';
     str +='</div></center>';
@@ -310,7 +313,7 @@ function showATK() {
   str +='<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="profile-member" style="width:60px;"></div>';
   str +='<div style="color:#0056ff;font-weight: 600;margin-top:15px;">คุณ'+sessionStorage.getItem("EmpName")+'</div>';
   str +='<div style="color:#0056ff;">สังกัด : '+sessionStorage.getItem("EmpGroup")+'</div>';
-  str +='<div style="color:#ccc;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+sDateTime+'</div>';
+  str +='<div style="color:#999;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+sDateTime+'</div>';
       //alert("showATK==="+sessionStorage.getItem("EmpTable"));
   if(sessionStorage.getItem("EmpTable")!=null) {
     //document.getElementById('ClickWelcomePack').style.display='block';
@@ -338,12 +341,12 @@ function WelcomePack() {
     str +='<div style="padding:30px;display: none;" id="loadingPack"><img src="./img/loading.gif"><div style="padding-top:15px;color:#f68b1f;">L o a d i n g</div></div>';
   } else {
     str +='<div style="margin-top:-10px;"><img src="./img/brown-bear.gif" style="width:370px;"></div>';
-    str +='<div style="color:#ff0000;font-weight: 600;padding:12px;background-color: #FFFF00">ท่านได้ทำการรับ Welcome Pack ไปแล้ว<br>เมื่อวันที่ '+sessionStorage.getItem("TimeRegister")+'</div>';
+    str +='<div style="margin-top:5px;color:#fff;font-weight: 600;padding:12px;background-color: #002d63;border-radius:5px;">ท่านได้ทำการรับ Welcome Pack ไปแล้ว<br>เมื่อวันที่ '+sessionStorage.getItem("TimeRegister")+'</div>';
   }
   str +='<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="profile-member" style="width:60px;"></div>';
   str +='<div style="color:#0056ff;font-weight: 600;margin-top:15px;">คุณ'+sessionStorage.getItem("EmpName")+'</div>';
   str +='<div style="color:#0056ff;">สังกัด : '+sessionStorage.getItem("EmpGroup")+'</div>';
-  str +='<div style="color:#ccc;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+sDateTime+'</div>';
+  str +='<div style="color:#999;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+sDateTime+'</div>';
   if(sessionStorage.getItem("ATKimg")!=null) {
     str +='<div class="btn-t2" onclick="showATK()" style="margin-top:10px;width:270px;">1. แสดงผล ATK ก่อนเข้างาน</div>';
   }
