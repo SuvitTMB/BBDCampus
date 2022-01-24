@@ -444,6 +444,7 @@ function SaveData() {
       ATK : document.getElementById("txtATK").value,
       ATKimg : sessionStorage.getItem("ATKimg"),
       PreRegister : 0,
+      PreDateTime : eSpace,
       //logATK : sessionStorage.getItem("logATK"),
       CampRound : sCampRound,
       EmpType : sEmpType,
