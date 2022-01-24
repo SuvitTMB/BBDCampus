@@ -443,6 +443,7 @@ function SaveData() {
       EmpRH : document.getElementById("txtEmpGroup").value,
       ATK : document.getElementById("txtATK").value,
       ATKimg : sessionStorage.getItem("ATKimg"),
+      EmpMember : 0;
       PreRegister : 0,
       PreDateTime : eSpace,
       //logATK : sessionStorage.getItem("logATK"),
