@@ -443,6 +443,8 @@ function SaveData() {
       EmpRH : document.getElementById("txtEmpGroup").value,
       ATK : document.getElementById("txtATK").value,
       ATKimg : sessionStorage.getItem("ATKimg"),
+      PreRegister : 0,
+      
       //logATK : sessionStorage.getItem("logATK"),
       CampRound : sCampRound,
       EmpType : sEmpType,
