@@ -128,7 +128,7 @@ function CheckBootCampOpen() {
 }
 
 
-var xCheckRegister = 0;
+var xCheckRegister = 0; 
 function CheckRegister() {
   var str = "";
   dbBootRegister.where('LineID','==',sessionStorage.getItem("LineID"))
