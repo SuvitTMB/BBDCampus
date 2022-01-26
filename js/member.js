@@ -68,7 +68,7 @@ function DisplayRound(x) {
   //dbBootCamp.where(CampRound,'==',aCheckRound)
   .get().then((snapshot)=> {
   snapshot.forEach(doc=> {
-  		sEmpType = doc.data().EmpType;
+  	sEmpType = doc.data().EmpType;
       //sTxtView = doc.data().TxtView;
       //sLinkView = doc.data().LinkView;
       if(doc.data().LinkView!="") {
