@@ -72,9 +72,9 @@ function DisplayRound(x) {
       //sTxtView = doc.data().TxtView;
       //sLinkView = doc.data().LinkView;
       if(doc.data().LinkView!="") {
-        //str1 += '<div style="width:100%;cursor: pointer;" onclick="window.open(\''+ doc.data().LinkView+ +'\'), "_blank");">';
+        str1 += '<div style="width:100%;cursor: pointer;" onclick="window.open(\''+ doc.data().LinkView +'\'), "_blank");">';
 
-        str1 += '<div style="width:100%;cursor: pointer;" onclick="window.open('+doc.data().LinkView+', "_blank");">';
+        //str1 += '<div style="width:100%;cursor: pointer;" onclick="window.open('+doc.data().LinkView+', "_blank");">';
         str1 += '<div style="position: relative;"><img src="./img/first-day-school.jpg" style="border-radius: 15px;width:380px;"></div>';
         str1 += '<div class="btn-t1" style="margin:-50px 0 0 -130px;position: absolute;">ดูภาพกิจกรรม BBD CAMPUS</div></div>';
       }      
