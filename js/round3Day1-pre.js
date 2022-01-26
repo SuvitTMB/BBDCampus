@@ -442,7 +442,7 @@ function ClickSaveProfile() {
   //alert(sCheckBottom);
 
 
-  sCheckBottom = 5;
+  //sCheckBottom = 5;
 
   if(sCheckBottom==5) {
     sATK = document.getElementById("txtATK").value;
@@ -518,9 +518,9 @@ function SaveData() {
       //alert("Size = "+sessionStorage.getItem("EmpSize"));
       if (stxtEmpID.length < 5) stxtEmpID = '0' + stxtEmpID;
       //stxtEmpID = stxtEmpID.substring(0, 5);
-      alert(stxtEmpID.length+"==="+stxtEmpID);
+      //alert(stxtEmpID.length+"==="+stxtEmpID);
       
-/*
+
       dbBootRegister.add({
         LineID : sessionStorage.getItem("LineID"),
         LineName : sessionStorage.getItem("LineName"),
@@ -546,7 +546,7 @@ function SaveData() {
         PreDateTime : dateString
       });
       sPreDateTime = dateString;
-*/
+
       //alert("Size222:"+gSize);
     });
   }
