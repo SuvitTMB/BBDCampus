@@ -34,7 +34,7 @@ var FinalRoundSplit = parts[1]; // 004  //String part1 เก็บค่าpart
 
 $(document).ready(function () {
   //PreRegister เปิดลงทะเบียนล่วงหน้า
-  sessionStorage.clear();
+  //sessionStorage.clear();
   sessionStorage.setItem("PreRegister", 1);
   sessionStorage.setItem("EmpMember", 0);
   
