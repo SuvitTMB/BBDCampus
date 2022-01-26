@@ -108,7 +108,8 @@ function Connect_DB() {
 
 
 function CheckBootCampOpen() {
-  //if(sessionStorage.getItem("LineID")==null) { main(); }
+  if(sessionStorage.getItem("LineID")==null) { main(); }
+  ฟสำพะ๖sessionStorage.getItem("LineID");
   var str = "";
   dbBootCamp.where('CampRound','==',xRound)
   .limit(1)
