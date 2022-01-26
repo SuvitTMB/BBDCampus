@@ -109,7 +109,7 @@ function Connect_DB() {
 
 function CheckBootCampOpen() {
   //if(sessionStorage.getItem("LineID")==null) { main(); }
-  alert(sessionStorage.getItem("LineID")); 
+  //alert(sessionStorage.getItem("LineID")); 
   var str = "";
   dbBootCamp.where('CampRound','==',xRound)
   .limit(1)
