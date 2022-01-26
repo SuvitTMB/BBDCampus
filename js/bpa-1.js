@@ -141,7 +141,7 @@ function CheckBootCampOpen() {
 
 var xCheckRegister = 0;
 function CheckRegister() {
-  alert(sessionStorage.getItem("LineID"));
+  //alert(sessionStorage.getItem("LineID"));
   var str = "";
   //alert("a-2===="+sEmpType);
   dbBootRegister.where('LineID','==',sessionStorage.getItem("LineID"))
