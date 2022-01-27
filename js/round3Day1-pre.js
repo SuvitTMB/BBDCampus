@@ -315,7 +315,8 @@ function WaitingPage() {
   str +='<div><img src="'+ sessionStorage.getItem("ATKimg") +'" style="width:370px;"></div>';
 
     if(FinalRoundSplit==undefined) {
-      if(sessionStorage.getItem("EmpSize")!="" && sessionStorage.getItem("EmpSize")!=null) {
+      //if(sessionStorage.getItem("EmpSize")!="" && sessionStorage.getItem("EmpSize")!=null) {
+      if(sessionStorage.getItem("EmpMember")==1) {
         //alert("Size = "+sessionStorage.getItem("EmpSize"));
         str +='<div style="font-size:13px;color:#f68b1f;margin-top:25px;">ไซต์เสื้อที่คุณแจ้งไว้</div>';
         if(sessionStorage.getItem("EmpSize")!="") {
