@@ -491,7 +491,7 @@ function ClickSaveProfile() {
   if(sessionStorage.getItem("ATKimg") !== null) { sCheckBottom = sCheckBottom+1; }
   //alert(sCheckBottom);
 
-  sCheckBottom = 5;
+  //sCheckBottom = 5;
 
 
   if(sCheckBottom==5) {
