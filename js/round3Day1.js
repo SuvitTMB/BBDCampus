@@ -259,6 +259,7 @@ function EditData() {
 
 
 function CheckMember() {
+  alert("check Member (L262)");
   dbBootMember.where('EmpID','==',parseFloat(sessionStorage.getItem("EmpID")))
   .where('EmpType','==',sEmpType)
   .limit(1)
@@ -271,6 +272,7 @@ function CheckMember() {
       sessionStorage.setItem("EmpGroup", doc.data().EmpBranch);
       sessionStorage.setItem("EmpTable", doc.data().EmpTable);
       sessionStorage.setItem("TimeRegister", doc.data().TimeRegister);
+      sessionStorage.setItem("EmpMember", 1);
       sessionStorage.setItem("EmpSize", doc.data().EmpSize);
       //alert("EmpTable(273) : "+sessionStorage.getItem("EmpTable"));
       //alert(doc.data().EmpBranch);
@@ -567,7 +569,7 @@ function SaveData() {
       ATKimg : sessionStorage.getItem("ATKimg"),
       EmpMember : parseInt(sessionStorage.getItem("EmpMember")),
       PreRegister : 0,
-      EmpTable : sessionStorage.getItem("EmpTable"),
+      EmpTable : parseInt(sessionStorage.getItem("EmpTable")),
       EmpSize : sessionStorage.getItem("EmpSize"),
       PreDateTime : eSpace,
       StatusRegister : 1,
