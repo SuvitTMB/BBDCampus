@@ -368,7 +368,7 @@ function WaitingPage() {
     }
     //alert("EmpTable(L363) : "+sessionStorage.getItem("EmpTable"));
     //if(sessionStorage.getItem("EmpTable")!=null && FinalRoundSplit==undefined) {
-    if(sessionStorage.getItem("EmpTable")==1) {
+    if(sessionStorage.getItem("EmpMember")==1) {
       str +='<div class="btn-t4" onclick="WelcomePack()" style="margin-top:10px;width:270px;">2. คลิกเพื่อรับ Welcome Pack</div>';
     } else {
       str +='<div class="btn-t4" style="margin-top:10px;width:270px;background:#ddd;cursor:default;color:#999;">2. คลิกเพื่อรับ Welcome Pack</div>';
