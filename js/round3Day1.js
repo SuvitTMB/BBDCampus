@@ -369,6 +369,7 @@ function WaitingPage() {
     }
     //alert("EmpTable(L363) : "+sessionStorage.getItem("EmpTable"));
     //if(sessionStorage.getItem("EmpTable")!=null && FinalRoundSplit==undefined) {
+    alert("EmpMember(L372) "+sessionStorage.getItem("EmpMember"));
     if(sessionStorage.getItem("EmpMember")==1) {
       str +='<div class="btn-t4" onclick="WelcomePack()" style="margin-top:10px;width:270px;">2. คลิกเพื่อรับ Welcome Pack</div>';
     } else {
@@ -396,6 +397,7 @@ function showATK() {
   str +='<div style="color:#999;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+sDateTime+'</div>';
       //alert("showATK==="+sessionStorage.getItem("EmpTable"));
   //if(sessionStorage.getItem("EmpTable")!=null && FinalRoundSplit==undefined) {
+  alert("EmpMember(L400) "+sessionStorage.getItem("EmpMember"));
   if(sessionStorage.getItem("EmpMember")==1) {
     str +='<div class="btn-t4" onclick="WelcomePack()" style="margin-top:10px;width:270px;">2. คลิกเพื่อรับ Welcome Pack</div>';
   } else {
