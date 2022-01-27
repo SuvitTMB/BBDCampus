@@ -155,6 +155,7 @@ function CheckRegister() {
       //alert("Pre Register");
     });
     if(EidBootRegister=="") {
+      CheckMember();
       document.getElementById('loading').style.display='none';
       document.getElementById('gotoLink').style.display='block';
     } else {
