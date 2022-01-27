@@ -146,6 +146,7 @@ function CheckRegister() {
       sessionStorage.setItem("CheckPass", doc.data().DateTime);
       sessionStorage.setItem("ATKimg", doc.data().ATKimg);
       sessionStorage.setItem("EmpGroup", doc.data().EmpRH);
+      sessionStorage.setItem("EmpMember", doc.data().EmpMember);
       sessionStorage.setItem("PreRegister", doc.data().PreRegister);
       sessionStorage.setItem("DateTime", doc.data().DateTime);
       document.getElementById('OpenBootCamp').style.display='none';
