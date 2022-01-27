@@ -394,7 +394,8 @@ function showATK() {
   str +='<div style="color:#0056ff;">สังกัด : '+sessionStorage.getItem("EmpGroup")+'</div>';
   str +='<div style="color:#999;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+sDateTime+'</div>';
       //alert("showATK==="+sessionStorage.getItem("EmpTable"));
-  if(sessionStorage.getItem("EmpTable")!=null && FinalRoundSplit==undefined) {
+  //if(sessionStorage.getItem("EmpTable")!=null && FinalRoundSplit==undefined) {
+  if(sessionStorage.getItem("EmpMember")==1) {
     str +='<div class="btn-t4" onclick="WelcomePack()" style="margin-top:10px;width:270px;">2. คลิกเพื่อรับ Welcome Pack</div>';
   } else {
     str +='<div class="btn-t4" style="margin-top:10px;width:270px;background:#ddd;cursor:default;color:#999;">2. คลิกเพื่อรับ Welcome Pack</div>';
@@ -413,7 +414,11 @@ function WelcomePack() {
   str +='<div style="font-size:13px;color:#f68b1f;">แสดงหน้านี้เพื่อรับกล่อง Welcome Pack</div></div></div>';
   str +='<div class="profile-txt" style="margin-top:-25px;font-size:12px;">สำหรับผู้เข้าอบรม : '+ sessionStorage.getItem("CampName") +'</div>';
   if(sessionStorage.getItem("EmpTable")==0) {
-    str +='<div style="margin:10px;"><img src="./img/Size-'+ sessionStorage.getItem("EmpSize") +'.jpg" style="width:260px;"></div>';
+    if(sessionStorage.getItem("EmpSize")!="") {
+      str +='<div style="margin:10px;"><img src="./img/Size-'+ sessionStorage.getItem("EmpSize") +'.jpg" style="width:260px;"></div>';
+    } else {
+      str +='<div style="margin:10px;"><img src="./img/Size.jpg" style="width:260px;"></div>';
+    }
     //str +='<div style="margin-top:-10px;"><img src="./img/box-git.gif" style="width:370px;"></div>';
     str +='<div id="ClickWelcomePack">';
     str +='<div onclick="getWelcomePack()" class="btn-t4" style="margin-top:0px;width:270px;">สำหรับเจ้าหน้าที่กดเท่านั้น<br>ยืนยันการรับ Welcome Pack</div>';
