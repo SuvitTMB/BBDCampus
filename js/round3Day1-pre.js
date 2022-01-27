@@ -318,7 +318,11 @@ function WaitingPage() {
       if(sessionStorage.getItem("EmpSize")!="" && sessionStorage.getItem("EmpSize")!=null) {
         //alert("Size = "+sessionStorage.getItem("EmpSize"));
         str +='<div style="font-size:13px;color:#f68b1f;margin-top:25px;">ไซต์เสื้อที่คุณแจ้งไว้</div>';
-        str +='<div style="margin:10px;"><img src="./img/Size-'+ sessionStorage.getItem("EmpSize") +'.jpg" style="width:260px;"></div>';
+        if(sessionStorage.getItem("EmpSize")!="") {
+          str +='<div style="margin:10px;"><img src="./img/Size-'+ sessionStorage.getItem("EmpSize") +'.jpg" style="width:260px;"></div>';
+        } else {
+          str +='<div style="margin:10px;"><img src="./img/Size.jpg" style="width:260px;"></div>';
+        }
         str +='<div style="padding-top:15px;">*** กรุณาสแกนลงทะเบียนหน้างานอีกครั้ง ***</div>';
         str +='<div style="margin-top:-4px;">*** อย่าลืมมารับ Welcome Pack หน้างาน ***</div>';
       } else {
