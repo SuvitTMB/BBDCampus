@@ -464,7 +464,7 @@ function getWelcomePack() {
         TimegetBox : dateString
       });
       sessionStorage.setItem("EmpTable", 1);
-      sessionStorage.setItem("TimeRegister", dateString);
+      sessionStorage.setItem("TimeRegister", dateString); 
     }
   }
 
