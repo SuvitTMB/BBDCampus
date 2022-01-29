@@ -30,7 +30,7 @@ parts = xRound.split("-"); //สร้างString arry ชื่อparts
 var FinalRound = parts[0]; // 004  //String part1 เก็บค่าparts[0]
 var FinalRoundSplit = parts[1]; // 004  //String part1 เก็บค่าparts[0]
 
-$(document).ready(function () {
+$(document).ready(function () { 
   //sessionStorage.clear();
   sessionStorage.setItem("EmpTable", 0);
   sessionStorage.setItem("EmpSize", '');
