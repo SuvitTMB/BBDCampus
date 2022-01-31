@@ -124,6 +124,7 @@ function CheckBootCampOpen() {
     });
     str += '<div class="btn-t1" style="margin-top:20px;width:220px;" onclick="CheckData()">คลิกลงทะเบียน<br>'+sCheckOpen+'</div>';
     $("#gotoLink").html(str);  
+    CheckData();
     CheckRegister();
   });
 }
