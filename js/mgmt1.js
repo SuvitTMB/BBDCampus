@@ -175,6 +175,70 @@ function CheckRegister() {
 }
 
 
+function CloseAll() {
+  document.getElementById('id01').style.display='none';
+}
+
+var sCheckBottom = 0;
+function ClickSaveProfile() {
+  sCheckBottom = 0;
+  //alert($("input[type=checkbox][id=cb1]:checked").val());
+  stxtEmpID = document.getElementById("txtEmpID").value;
+  stxtEmpName = document.getElementById("txtEmpName").value;
+  //stxtEmpPhone = document.getElementById("txtEmpPhone").value;
+  stxtEmpGroup = document.getElementById("txtEmpGroup").value;
+  stxtATK = document.getElementById("txtATK").value;
+
+  if(stxtEmpID !== null && stxtEmpID !== '') { sCheckBottom = sCheckBottom+1; }
+  if(stxtEmpName !== null && stxtEmpName !== '') { sCheckBottom = sCheckBottom+1; }
+  //if(stxtEmpPhone !== null && stxtEmpPhone !== '') { sCheckBottom = sCheckBottom+1; }
+  if(stxtEmpGroup !== null && stxtEmpGroup !== '') { sCheckBottom = sCheckBottom+1; }
+  if(stxtATK !== null && stxtATK !== '') { sCheckBottom = sCheckBottom+1; }
+  if(sessionStorage.getItem("ATKimg") !== null) { sCheckBottom = sCheckBottom+1; }
+
+
+  if(sCheckBottom==5) {
+    sATK = document.getElementById("txtATK").value;
+    sessionStorage.setItem("EmpID", document.getElementById("txtEmpID").value);
+    //alert(sessionStorage.getItem("EmpID"));
+    CheckMember();
+    SaveData();
+  } else {
+    //alert(sessionStorage.getItem("ATKimg"));
+    alert("คุณกรอกข้อมูลไม่ครบ = "+sCheckBottom+"/5");
+  }
+}
+
+
+
+function OpenRegister(x) {
+  //alert(x);
+  var str = "";
+  dbBootRegister.where(firebase.firestore.FieldPath.documentId(), "==", x)
+  .get().then((snapshot)=> {
+  snapshot.forEach(doc=> {
+      str += '<div style="font-weight: 600;letter-spacing:4px;padding-bottom: 10px; color:#002d63;">'+doc.data().EmpType+'</div>';
+      if(doc.data().StatusRegister==0) {
+        if(doc.data().EmpSex=="M") {
+           str += '<div><img src="./img/m.png" class="img-member" style="width:120px;height:120px;">';
+        } else {
+           str += '<div><img src="./img/f.png" class="img-member" style="width:120px;height:120px;">';
+        }
+        str += '<div class="txt-member" style="padding-top: 15px;">'+doc.data().ShortName+'</div>';
+      } else {
+          str += '<div><img src=\''+ doc.data().LinePicture +'\' class="img-member-true" style="width:120px;height:120px;">';
+          str += '<div class="txt-member1" style="padding-top: 15px;">'+doc.data().LineName+'</div>';
+      }
+      str += '<div style="margin-top:20px;font-size:13px;font-weight: 600;">คุณ'+doc.data().EmpName+'</div>';
+      str += '<div>ลงทะเบียนกิจกรรม '+doc.data().EmpType+'</div>';
+      str += '<div>เมื่อวันที่ '+doc.data().DateTime+'</div>';
+    });
+    $("#DisplayUser").html(str);  
+    document.getElementById("id01").style.display = "block";
+  });
+}
+
+
 function SaveUpdate() {
   //CheckMember_Pre();
   //alert("Save Update = id "+EidBootRegister);
