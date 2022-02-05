@@ -128,6 +128,7 @@ function CheckBootCampOpen() {
     });
     str += '<div class="btn-t3" style="margin-top:20px;width:250px;" onclick="CheckData()">คลิกลงทะเบียน<br>'+sCheckOpen+'</div>';
     $("#gotoLink").html(str);
+    $("#DisplayRound").html(sCheckOpen);
     CheckRegister();
   });
 }
@@ -373,7 +374,7 @@ function OpenRegister(x) {
   snapshot.forEach(doc=> {
       str += '<div style="font-weight: 600;letter-spacing:4px;padding-bottom: 10px; color:#002d63;">'+doc.data().EmpType+'</div>';
       str += '<div><img src=\''+ doc.data().LinePicture +'\' class="img-member-true" style="width:120px;height:120px;cursor: pointer;">';
-      str += '<div class="txt-member1" style="padding-top: 15px;">'+doc.data().LineName+'</div>';
+      str += '<div class="txt-member1" style="padding-top: 15px;color:#f68b1f">'+doc.data().LineName+'</div>';
 /*
       if(doc.data().StatusRegister==0) {
         if(doc.data().EmpSex=="M") {
