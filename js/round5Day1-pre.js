@@ -358,7 +358,7 @@ function showRegister() {
       str += '<div class="box-member" style="width:61px;height:80px;overflow:hidden;float: left;" onclick="OpenRegister(\''+ doc.id +'\')"><div><img src="'+ doc.data().LinePicture +'" class="img-register"></div><div class="clr txt-member" style="font-size:10px;">'+ doc.data().LineName +'</div></div>';
     });
     if(sessionStorage.getItem("ATKimg")!=null) {
-      str +='<div class="btn-t4" onclick="WaitingPage()" style="margin-top:10px;width:250px;">คลิกเพื่อแสดงผล ATK<br>ก่อนเข้าร่วมงาน</div>';
+      str +='<div class="btn-t4" onclick="WaitingPage()" style="margin-top:10px;width:250px;">คลิกเพื่อดูผล ATK ของคุณ</div>';
     }
     $("#MyWating").html(str);    
     $("#DisplayCountRegister").html("<div>จำนวนลงทะเบียน : "+sCountID+" คน</div>");  
