@@ -245,10 +245,12 @@ function OpenForm() {
     document.getElementById('OpenBootCamp').style.display='none';
     document.getElementById('myRegister').style.display='none';
     document.getElementById('myTimer').style.display='block';
+    document.getElementById('myDisplayLine').style.display='none';
   } else {
     document.getElementById('OpenBootCamp').style.display='none';
     document.getElementById('myRegister').style.display='block';
     document.getElementById('myTimer').style.display='none';
+    document.getElementById('myDisplayLine').style.display='none';
   }
 }
 
@@ -336,6 +338,10 @@ function CheckMember_Pre() {
 
 
 function WaitingPage() {
+  document.getElementById('myDisplayLine').style.display='none';
+  document.getElementById('myRegister').style.display='none';
+  document.getElementById('myTimer').style.display='block';
+  //document.getElementById('myDisplayLine').style.display='none';
   //alert("EidBootRegister==="+EidBootRegister);
   if(xCheckRegister==1) {
     document.getElementById('BootCampLoading').style.display='none';
@@ -380,6 +386,7 @@ function WaitingPage() {
       str +='<div class="btn-t4" style="margin-top:10px;width:270px;background:#ddd;cursor:default;color:#999;">2. คลิกเพื่อรับ Welcome Pack</div>';
     }
     str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:10px;width:270px;">3. ดูรายละเอียดเว็บไซต์</div>';
+    str +='<div class="btn-t1" onclick="RegisterLINE()" style="margin-top:10px;width:270px;">4. สมัครเป็นสมาชิกของ<br>LINE Retail Society</div>';
     str +='</div></center>';
     $("#MyWating").html(str);    
 
@@ -408,6 +415,7 @@ function showATK() {
     str +='<div class="btn-t4" style="margin-top:10px;width:270px;background:#ddd;cursor:default;color:#999;">2. คลิกเพื่อรับ Welcome Pack</div>';
   }
   str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:10px;width:270px;">3. ดูรายละเอียดเว็บไซต์</div>';
+    str +='<div class="btn-t1" onclick="RegisterLINE()" style="margin-top:10px;width:270px;">4. สมัครเป็นสมาชิกของ<br>LINE Retail Society</div>';
   $("#MyWating").html(str);    
 }
 
@@ -427,8 +435,7 @@ function WelcomePack() {
       str +='<div style="margin:10px;"><img src="./img/Size.jpg" style="width:260px;"></div>';
     }
     //str +='<div style="margin-top:-10px;"><img src="./img/box-git.gif" style="width:370px;"></div>';
-    str +='<div id="ClickWelcomePack">';
-    str +='<div onclick="getWelcomePack()" class="btn-t4" style="margin-top:0px;width:270px;">สำหรับเจ้าหน้าที่กดเท่านั้น<br>ยืนยันการรับ Welcome Pack</div>';
+    str +='<div id="ClickWelcomePack">';    str +='<div onclick="getWelcomePack()" class="btn-t4" style="margin-top:0px;width:270px;">สำหรับเจ้าหน้าที่กดเท่านั้น<br>ยืนยันการรับ Welcome Pack</div>';
     str +='<div style="color:#ff0000;padding:8px;">ห้ามกดปุ่มรับ Welcome Pack เองนะครับ</div>';
     str +='</div>';
     str +='<div style="padding:30px;display: none;" id="loadingPack"><img src="./img/loading.gif"><div style="padding-top:15px;color:#f68b1f;">L o a d i n g</div></div>';
@@ -444,7 +451,32 @@ function WelcomePack() {
     str +='<div class="btn-t2" onclick="showATK()" style="margin-top:10px;width:270px;">1. แสดงผล ATK ก่อนเข้างาน</div>';
   }
   str +='<div class="btn-t1" onclick="gotowebsite()" style="margin-top:10px;width:270px;">3. ดูรายละเอียดเว็บไซต์</div>';
+  str +='<div class="btn-t1" onclick="RegisterLINE()" style="margin-top:10px;width:270px;">4. สมัครเป็นสมาชิกของ<br>LINE Retail Society</div>';
   $("#MyWating").html(str);    
+}
+
+
+
+function RegisterLINE() {
+  document.getElementById('myDisplayLine').style.display='block';
+  document.getElementById('myRegister').style.display='none';
+  document.getElementById('myTimer').style.display='none';
+  var str = "";
+  //str +='<div class="title_container"><div class="title-head">ยินดีต้อนรับสู่<br>BBD CAMPUS Specialist Program 2022</div></div>';
+  //str +='<div class="profile-txt" style="margin-top:-25px;font-size:12px;">'+ sessionStorage.getItem("CampName") +'</div>';
+  str +='<div class="btn-t3" style="margin:0px auto 0px auto;cursor: default;width:280px;">ตรวจสอบการเป็นสมาชิก<br>LINE Retail Society</div>';
+  str +='<div style="padding:20px 40px;font-size: 12px; color:#0056ff; font-weight: 600;line-height: 1.4;">เพื่อให้การสื่อสารของพนักงานในสายงาน CRBO มีความครอบคลุม และทั่วถึงมากยิ่งขึ้น จึงขอให้ทำการตรวจสอบการเป็นสมาชิกของ LINE Retail Society เพื่อใช้ในการสื่อสารข้อมูล ข่าวสาร และกิจกรรมต่างที่จะเกิดขึ้น </div>';
+  str +='<div style="padding:10px 0; color:#002d63; font-weight: 600;">1. ตรวจสอบว่ามี LINE Retail Society อยู่หรือไม่</div>';
+  str +='<div><img src="./img/line-1.jpg" style="width:320px;"></div>';
+  str +='<div style="padding:20px 0; color:#002d63; font-weight: 600;">2. ตรวจสอบว่า LINE Retail Society ถูกบล็อคอยู่หรือไม่<br>ให้ทำการปลดบล็อค แล้วคลิกลงทะเบียนใหม่</div>';
+  str +='<div><img src="./img/line-2.jpg" style="width:320px;"></div>';
+  str +='<div style="padding:20px 0; color:#002d63; font-weight: 600;">3. ถ้าไม่มีตามข้อ 1 คลิกเพื่อสมัครเข้า LINE Retail</div>';
+  str +='<div><img src="./img/line-3.jpg" style="width:320px;"></div>';
+  str +='<div class="btn-t1" style="margin-top:30px;width:280px;" onclick="window.open(https://liff.line.me/1653903646-V8pXB3op);">คลิกที่นี่เพื่อสมัครสมาชิก<br>LINE Retail Society</div>';
+  str +='<div class="clr"></div> ';
+  str +='<div class="btn-t2" onclick="WaitingPage()" style="margin-top:10px;width:170px;">ดูข้อมูลอื่น ๆ</div>'
+  $("#DisplayLine").html(str);    
+
 }
 
 
@@ -587,8 +619,6 @@ function SaveData() {
 
 
   WaitingPage();
-  document.getElementById('myRegister').style.display='none';
-  document.getElementById('myTimer').style.display='block';
 }
 
 
