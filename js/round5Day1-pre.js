@@ -349,7 +349,7 @@ function showRegister() {
   str +='<div class="title_container"><div class="title-head">ข้อมูลผู้ลงทะเบียนเข้าร่วมงาน<br>'+sEmpType+'</div></div>';
   str +='<div id="DisplayCountRegister" style="margin-bottom: 15px;"></div>';
   //alert(sEmpType);
-  dbBootRegister.where('EmpType','==',sEmpType)
+  dbBootRegister.where('EmpType','==',xRound)
   .where('PreRegister','==',1)
   .orderBy('TimeStamp','desc')
   .get().then((snapshot)=> {
