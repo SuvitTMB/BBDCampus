@@ -23,7 +23,7 @@ var sCampRound = "";
 var sDateTime = ""; 
 var sLINERegister = "";
 var sATK = "";
-var xRound = "MGMT1"; 
+var xRound = "MGMT2"; 
 var parts = [];
 var parts1 = [];
 parts = xRound.split("-"); //สร้างString arry ชื่อparts
@@ -55,7 +55,7 @@ $(document).ready(function () {
 
 
 async function main() {
-  await liff.init({ liffId: "1655966947-j53NlL0n" });
+  await liff.init({ liffId: "1655966947-vzGRxeoW" });
   document.getElementById("isLoggedIn").append(liff.isLoggedIn());
   if(liff.isLoggedIn()) {
     getUserProfile();
