@@ -50,7 +50,7 @@ $(document).ready(function () {
   str += '<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="add-profile" width="100px"></div>';
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
-  */
+  */  
 
   main()
   Connect_DB();
@@ -129,6 +129,7 @@ function CheckBootCampOpen() {
     });
     str += '<div class="btn-t3" style="margin-top:20px;width:250px;" onclick="CheckData()">คลิกลงทะเบียนล่วงหน้า<br>'+sCheckOpen+'</div>';
     $("#gotoLink").html(str);
+    $("#DisplayRound").html(sCheckOpen);
     CheckRegister();
   });
 }
