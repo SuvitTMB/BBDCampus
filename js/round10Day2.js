@@ -35,7 +35,7 @@ $(document).ready(function () {
   sessionStorage.setItem("EmpTable", 0);
   sessionStorage.setItem("EmpSize", '');
 
-  
+  /*
   var str = "";
   var sLineID = "Ua6b6bf745bd9bfd01a180de1a05c23b3";
   var sLineName = "Website";
@@ -46,9 +46,9 @@ $(document).ready(function () {
   str += '<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="add-profile" width="100px"></div>';
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
-  
+  */
 
-  //main()
+  main()
   Connect_DB();
   CheckBootCampOpen();
 });
