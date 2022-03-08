@@ -188,13 +188,11 @@ function ClickSaveProfile() {
   //alert($("input[type=checkbox][id=cb1]:checked").val());
   stxtEmpID = document.getElementById("txtEmpID").value;
   stxtEmpName = document.getElementById("txtEmpName").value;
-  //stxtEmpPhone = document.getElementById("txtEmpPhone").value;
   stxtEmpGroup = document.getElementById("txtEmpGroup").value;
   stxtATK = document.getElementById("txtATK").value;
 
   if(stxtEmpID !== null && stxtEmpID !== '') { sCheckBottom = sCheckBottom+1; }
   if(stxtEmpName !== null && stxtEmpName !== '') { sCheckBottom = sCheckBottom+1; }
-  //if(stxtEmpPhone !== null && stxtEmpPhone !== '') { sCheckBottom = sCheckBottom+1; }
   if(stxtEmpGroup !== null && stxtEmpGroup !== '') { sCheckBottom = sCheckBottom+1; }
   if(stxtATK !== null && stxtATK !== '') { sCheckBottom = sCheckBottom+1; }
   if(sessionStorage.getItem("ATKimg") !== null) { sCheckBottom = sCheckBottom+1; }
