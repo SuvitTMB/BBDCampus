@@ -31,7 +31,7 @@ parts = xRound.split("-"); //สร้างString arry ชื่อparts
 var FinalRound = parts[0]; // 004  //String part1 เก็บค่าparts[0]
 var FinalRoundSplit = parts[1]; // 004  //String part1 เก็บค่าparts[0]
 //var part2 = parts[1]; // 034556  //String part2 เก็บค่าparts[1]
-
+ 
 $(document).ready(function () {
   //PreRegister เปิดลงทะเบียนล่วงหน้า
   //sessionStorage.clear();
