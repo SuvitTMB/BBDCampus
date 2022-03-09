@@ -47,7 +47,7 @@ $(document).ready(function () {
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
   */
-  main()
+  main();
   //Connect_DB();
   //CheckBootCampOpen();
 });
