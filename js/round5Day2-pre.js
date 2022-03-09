@@ -81,7 +81,7 @@ async function getUserProfile() {
   $("#MyProfile").html(str);  
   Connect_DB();
   CheckBootCampOpen();
-  
+   
   //Connect_DB();
   //CheckData();
 }
