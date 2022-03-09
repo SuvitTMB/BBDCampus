@@ -36,7 +36,7 @@ $(document).ready(function () {
   //PreRegister เปิดลงทะเบียนล่วงหน้า
   //sessionStorage.clear();
   sessionStorage.setItem("PreRegister", 1);
-  sessionStorage.setItem("EmpMember", 0);
+  sessionStorage.setItem("EmpMember", 0); 
   
 
   /*
