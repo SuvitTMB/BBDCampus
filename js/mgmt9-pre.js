@@ -24,7 +24,7 @@ var sDateTime = "";
 var sPreDateTime = "";
 var sLINERegister = "";
 var sATK = "";
-var xRound = "MGMT9";
+var xRound = "BKK-AL";
 var parts = [];
 var parts1 = [];
 parts = xRound.split("-"); //สร้างString arry ชื่อparts
@@ -50,15 +50,15 @@ $(document).ready(function () {
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
   */
-  main()
-  Connect_DB();
-  CheckBootCampOpen();
+  main();
+  //Connect_DB();
+  //CheckBootCampOpen();
 });
 
 
 
 async function main() {
-  await liff.init({ liffId: "1655966947-nbbeVZXq" });
+  await liff.init({ liffId: "1655966947-OkGXj1Vk" });
   document.getElementById("isLoggedIn").append(liff.isLoggedIn());
   if(liff.isLoggedIn()) {
     getUserProfile();
@@ -77,6 +77,9 @@ async function getUserProfile() {
   str += '<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="add-profile" width="100px"></div>';
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
+  Connect_DB();
+  CheckBootCampOpen();
+
   //Connect_DB();
   //CheckData();
 }
