@@ -47,9 +47,9 @@ $(document).ready(function () {
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
   */
-  main()
-  Connect_DB();
-  CheckBootCampOpen();
+  main();
+  //Connect_DB();
+  //CheckBootCampOpen();
 });
 
 
@@ -74,6 +74,9 @@ async function getUserProfile() {
   str += '<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="add-profile" width="100px"></div>';
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
+  Connect_DB();
+  CheckBootCampOpen();
+
   //Connect_DB();
   //CheckData();
 }
