@@ -15,7 +15,7 @@ var EidBootRegister = "";
 var EidBootMember = "";
 var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
 var sDateRegister = "";
-var i = 0;
+var i = 0; 
 const x = document.querySelectorAll(`div.com[min="${i}"]`);
 var sCheckOpen = "";
 //var sEmpType = "";
