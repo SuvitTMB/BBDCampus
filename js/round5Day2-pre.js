@@ -80,7 +80,7 @@ async function getUserProfile() {
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
   Connect_DB();
-  CheckBootCampOpen();
+  //CheckBootCampOpen();
   
   //Connect_DB();
   //CheckData();
@@ -111,6 +111,7 @@ function Connect_DB() {
   dbBootCamp = firebase.firestore().collection("BootCamp");
   dbBootRegister = firebase.firestore().collection("BootRegister");
   dbBootMember = firebase.firestore().collection("BootMember");
+  CheckBootCampOpen();
 }
 
 
