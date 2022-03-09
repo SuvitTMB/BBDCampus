@@ -78,7 +78,7 @@ async function getUserProfile() {
 
   Connect_DB();
   CheckBootCampOpen();
-  
+   
   //Connect_DB();
   //CheckData();
 }
