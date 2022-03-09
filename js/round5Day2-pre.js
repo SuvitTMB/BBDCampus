@@ -19,7 +19,7 @@ var i = 0;
 const x = document.querySelectorAll(`div.com[min="${i}"]`);
 var sCheckOpen = "";
 //var sEmpType = "";
-var sCampRound = "";
+var sCampRound = ""; 
 var sDateTime = ""; 
 var sPreDateTime = "";
 var sLINERegister = "";
