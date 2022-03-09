@@ -53,8 +53,8 @@ $(document).ready(function () {
   */
 
   main()
-  //Connect_DB();
-  //CheckBootCampOpen();
+  Connect_DB();
+  CheckBootCampOpen();
 });
 
 
@@ -79,7 +79,7 @@ async function getUserProfile() {
   str += '<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="add-profile" width="100px"></div>';
   str += '<div class="NameLine">'+ sessionStorage.getItem("LineName")+'</div>';
   $("#MyProfile").html(str);  
-  Connect_DB();
+  //Connect_DB();
   //CheckBootCampOpen();
   
   //Connect_DB();
@@ -111,7 +111,7 @@ function Connect_DB() {
   dbBootCamp = firebase.firestore().collection("BootCamp");
   dbBootRegister = firebase.firestore().collection("BootRegister");
   dbBootMember = firebase.firestore().collection("BootMember");
-  CheckBootCampOpen();
+  //CheckBootCampOpen();
 }
 
 
