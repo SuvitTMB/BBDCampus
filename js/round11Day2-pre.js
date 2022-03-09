@@ -52,7 +52,7 @@ $(document).ready(function () {
   $("#MyProfile").html(str);  
   */
 
-  main()
+  main();
   //Connect_DB();
   //CheckBootCampOpen();
 });
