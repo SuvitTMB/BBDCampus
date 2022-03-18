@@ -223,7 +223,7 @@ document.getElementById("files").addEventListener("change", function(e) {
       //create a storage reference
       var DateTimeStamp = Math.round(Date.now() / 1000);
       var ImgName = sCampRound+"-"+sessionStorage.getItem("EmpID")+"-"+DateTimeStamp;
-      var uploadTask = firebase.storage().ref('ATK-MGMT/'+ImgName).put(files[i]);
+      var uploadTask = firebase.storage().ref('ATK/'+ImgName).put(files[i]);
       //var ImgName = "R1-08400-"+DateTimeStamp;
       //var storage = firebase.storage().ref('ATK/'+files[i].name);
       var storage = firebase.storage().ref('ATK/'+ImgName);
