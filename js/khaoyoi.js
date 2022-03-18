@@ -34,6 +34,7 @@ $(document).ready(function () {
   //sessionStorage.clear();
   sessionStorage.setItem("EmpTable", 0);
   sessionStorage.setItem("EmpSize", '');
+
   /*
   var str = "";
   var sLineID = "Ua6b6bf745bd9bfd01a180de1a05c23b3";
@@ -434,9 +435,9 @@ function WaitingPage() {
     str +='<div class="profile-txt">'+ sessionStorage.getItem("LineName") +'</div>';
     str +='<div><div style="padding-top:15px;color:#f68b1f;font-weight: 600;">คุณ'+sessionStorage.getItem("EmpName")+'</div>';
     if(xEmpType!="") {
-      str +='<div class="profile-txt1" style="line-height: 1.2;color:#0056ff;">ยินดีต้อนรับสู่<br>Registration System<br><font color="#0056ff">'+xEmpType+'</font></div>';
+      str +='<div class="profile-txt1" style="line-height: 1.2;color:#0056ff;">ได้ทำการลงทะเบียนเข้าร่วมงาน<br><font color="#0056ff">'+xEmpType+'</font></div>';
     } else {
-      str +='<div class="profile-txt1" style="line-height: 1.2;">ได้ลงทะเบียนเข้าร่วมงาน<br><font color="#0056ff">'+sCampName+'</font><br>เรียบร้อยแล้ว</div>';
+      str +='<div class="profile-txt1" style="line-height: 1.2;">ได้ทำการลงทะเบียนเข้าร่วมงาน<br><font color="#0056ff">'+sCampName+'</font></div>';
     }
     if(sDateTime!="") {
       str +='<div style="color:#999;font-size:11px;font-weight: 300;">ลงทะเบียนเมื่อ : '+ sDateTime +'</div>';
@@ -446,14 +447,6 @@ function WaitingPage() {
     } else {
       str +='<div class="btn-t4" style="margin-top:10px;width:270px;background:#ddd;cursor:default;color:#999;">1. แสดงผล ATK ก่อนเข้างาน</div>';
     }
-    //alert("EmpTable(L363) : "+sessionStorage.getItem("EmpTable"));
-    //if(sessionStorage.getItem("EmpTable")!=null && FinalRoundSplit==undefined) {
-    //alert("EmpMember(L372) "+sessionStorage.getItem("EmpMember"));
-    //if(sessionStorage.getItem("EmpMember")==1 && FinalRoundSplit==undefined) {
-    //  str +='<div class="btn-t4" onclick="WelcomePack()" style="margin-top:10px;width:270px;">2. คลิกเพื่อรับ Welcome Pack</div>';
-    //} else {
-    //  str +='<div class="btn-t4" style="margin-top:10px;width:270px;background:#ddd;cursor:default;color:#999;">2. คลิกเพื่อรับ Welcome Pack</div>';
-    //}
     str +='<div class="btn-t1" onclick="showRegister()" style="margin-top:10px;width:270px;">2. ดูข้อมูลผู้ลงทะเบียนกิจกรรม</div>';
     str +='<div class="btn-t3" onclick="showMeeting()" style="margin-top:10px;width:270px;">3. ดูกำหนดการประชุมครั้งนี้</div>';
     str +='</div></center>';
@@ -470,7 +463,6 @@ function showATK() {
   str +='<div class="profile-txt" style="margin-top:-25px;font-size:12px;">สำหรับ : '+ sessionStorage.getItem("CampName") +'</div>';
   str +='<div><img src="'+ sessionStorage.getItem("ATKimg") +'" style="width:370px;"></div>';
   str +='<div style="padding:10px;color:#002d63;font-weight: 600;">แจ้งผล ATK เป็น : <font color="#f68b1f">'+sATK+'</font></div>';
-  //str +='<div class="profile-txt" style="font-size:12px;color:#002d63;">ข้อมูลผู้แจ้งผล ATK</div>';
   str +='<div><img src="'+ sessionStorage.getItem("LinePicture") +'" class="profile-member" style="width:60px;"></div>';
   str +='<div style="color:#0056ff;font-weight: 600;margin-top:15px;">คุณ'+sessionStorage.getItem("EmpName")+'</div>';
   str +='<div style="color:#0056ff;">สังกัด : '+sessionStorage.getItem("EmpGroup")+'</div>';
@@ -479,6 +471,8 @@ function showATK() {
   str +='<div class="btn-t3" onclick="showMeeting()" style="margin-top:10px;width:270px;">3. ดูกำหนดการประชุมครั้งนี้</div>';
   $("#MyWating").html(str);    
 }
+
+
 
 
 function showMeeting() {
@@ -493,7 +487,33 @@ function showMeeting() {
 }
 
 
-function WelcomePack() {
+
+function showRegister() {
+  var str = "";
+  var sCountID = 0;
+  str +='<div class="title_container"><div class="title-head">Registration System<br>'+sCampName+'</div></div>';
+  str +='<div id="DisplayCountRegister" style="margin-bottom: 15px;"></div>';
+  dbBootRegister.where('EmpType','==',sEmpType)
+  .orderBy('TimeStamp','desc')
+  .get().then((snapshot)=> {
+  snapshot.forEach(doc=> {
+      sCountID = sCountID+1;
+      str += '<div class="box-member" style="width:61px;height:80px;overflow:hidden;float: left;" onclick="OpenRegister(\''+ doc.id +'\')"><div><img src="'+ doc.data().LinePicture +'" class="img-register"></div><div class="clr txt-member" style="font-size:10px;">'+ doc.data().LineName +'</div></div>';
+    });
+    if(sessionStorage.getItem("ATKimg")!=null) {
+      str +='<div class="btn-t2" onclick="showATK()" style="margin-top:10px;width:270px;">1. แสดงผล ATK ก่อนเข้างาน</div>';
+      str +='<div class="btn-t3" onclick="showMeeting()" style="margin-top:10px;width:270px;">3. ดูกำหนดการประชุมครั้งนี้</div>';
+    }
+    $("#MyWating").html(str);    
+    $("#DisplayCountRegister").html("<div>จำนวนลงทะเบียน : "+sCountID+" คน</div>");  
+  });
+}
+
+
+
+
+
+function WelcomePack0000000() {
   getEid();
   //alert("EidBootRegister==="+EidBootRegister);
   var str = "";
@@ -524,38 +544,8 @@ function WelcomePack() {
     str +='<div class="btn-t2" onclick="showATK()" style="margin-top:10px;width:270px;">1. แสดงผล ATK ก่อนเข้างาน</div>';
   }
   str +='<div class="btn-t1" onclick="showRegister()" style="margin-top:10px;width:270px;">2. ดูข้อมูลผู้ลงทะเบียนกิจกรรม</div>';
-  str +='<div class="btn-t3" onclick="showMeeting()" style="margin-top:10px;width:270px;">3. ดูกำหนดการประชุมครั้งนี้</div>';
   $("#MyWating").html(str);    
 }
-
-
-
-
-function showRegister() {
-  var str = "";
-  var sCountID = 0;
-  str +='<div class="title_container"><div class="title-head">Registration System<br>'+sCampName+'</div></div>';
-  str +='<div id="DisplayCountRegister" style="margin-bottom: 15px;"></div>';
-  //alert(sEmpType);
-  dbBootRegister.where('EmpType','==',sEmpType)
-  .orderBy('TimeStamp','desc')
-  .get().then((snapshot)=> {
-  snapshot.forEach(doc=> {
-      sCountID = sCountID+1;
-      str += '<div class="box-member" style="width:61px;height:80px;overflow:hidden;float: left;" onclick="OpenRegister(\''+ doc.id +'\')"><div><img src="'+ doc.data().LinePicture +'" class="img-register"></div><div class="clr txt-member" style="font-size:10px;">'+ doc.data().LineName +'</div></div>';
-    });
-    if(sessionStorage.getItem("ATKimg")!=null) {
-      str +='<div class="btn-t2" onclick="showATK()" style="margin-top:10px;width:270px;">1. แสดงผล ATK ก่อนเข้างาน</div>';
-      //str +='<div class="btn-t4" onclick="showATK()" style="margin-top:10px;width:250px;">คลิกเพื่อแสดงผล ATK<br>ก่อนเข้าร่วมงาน</div>';
-      str +='<div class="btn-t3" onclick="showMeeting()" style="margin-top:10px;width:270px;">3. ดูกำหนดการประชุมครั้งนี้</div>';
-    }
-    //str +='<div class="btn-t1" onclick="showRegister()" style="margin-top:10px;width:250px;background:#999;">ดูรายชื่อผู้ลงทะเบียน</div>';
-    //$("#DisplayRegister").html(str);  
-    $("#MyWating").html(str);    
-    $("#DisplayCountRegister").html("<div>จำนวนลงทะเบียน : "+sCountID+" คน</div>");  
-  });
-}
-
 
 
 
