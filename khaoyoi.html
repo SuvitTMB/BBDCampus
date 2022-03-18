@@ -12,9 +12,6 @@
   })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
   <!-- End Google Tag Manager -->
 
-<!--
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> 
-     https://fonts.google.com/ -->
     <link href="./img/favicom.ico" rel="icon">
     <link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
     <!--<link rel="stylesheet" href="css/magnific-popup.css"> -->
@@ -24,10 +21,12 @@
     <link rel="stylesheet" href="./css/templatemo-ocean-vibes.css">
     <link rel="stylesheet" href="./css/button.css"> 
     <link rel="stylesheet" href="./css/index@.css">
+
     <script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-storage.js"></script>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -68,11 +67,11 @@
 
 
   <div id="BootCampLoading" class="carousel slide text-center" data-ride="carousel" style="display: block;">
-    <div class="form_wrapper" style="max-width:400px;">
+    <div class="form_wrapper">
       <div class="form_container">
         <div class="clr"></div>
         <div class="title-head">Registration System</div>
-        <div style="padding-top:20px;"><img src ="./img/khaoyoi.jpg" style="width:100%; max-width:280px;border-radius: 15px;"></div>
+        <div style="padding-top:20px;"><img src ="./img/khaoyoi.jpg" style="width:100%; max-width:280px;"></div>
         <div style="padding:30px;" id="loading"><img src="./img/loading.gif"><div style="padding-top:15px;color:#f68b1f;">L o a d i n g</div></div>
         <div style="display: none;margin:10px 0 20px 0;" id="gotoLink"></div>
       </div>
@@ -165,11 +164,6 @@
     <div class="clr"></div>
     <div class="form_wrapper">
       <div class="form_container">
-        <!--
-        <div class="title_container">
-          <div class="title-head">ยินดีต้อนรับสู่<br>BBD CAMPUS Specialist Program 2022</div>
-        </div>
-      --> 
         <div class="clearfix" style="margin:10px 0 20px 0;">
           <div id="MyWating"></div>
         </div>
@@ -179,11 +173,10 @@
 
 
   <div class="clr"></div>
-  <!--<div id="isLoggedIn" style="color:#f68b1f;"></div>-->
   <footer class="tm-footer">
       <center>
         <div id="isLoggedIn" style="color:#f68b1f;"></div>
-        <div style="font-weight: 600; color:#fff;">@LINE Retail Society</div>
+        <div style="font-weight: 600; color:#000;">LINE Retail Society</div>
       </center>
   </footer>
 
@@ -249,7 +242,7 @@ document.getElementById("files").addEventListener("change", function(e) {
 
         function complete() {
           uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
-            sessionStorage.setItem("ATK", url);
+            sessionStorage.setItem("ATKimg", url);
             var a = "<div><center><img src='"+url+"' width='90%'></center></div>";
         $("#MyATKUPloading").html(a);   
       document.getElementById('files').style.display='none';  
@@ -257,7 +250,22 @@ document.getElementById("files").addEventListener("change", function(e) {
       document.getElementById('Fileimguploading').style.display='none'; 
           }
           );
+      //document.getElementById('Fileimguploading').style.display='none'; 
+      //document.getElementById('DisplayUploading').style.display='block';  
+          //document.getElementById("uploading").innerHTML += `${files[i].name} upoaded <br />`;
+          //document.getElementById('send').style.display='none';
         }
+/*
+        function() {
+          uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+            sessionStorage.setItem("ATKimg", url);
+            alert(url);
+          }
+        );
+        }
+*/
+
+
       );
     }
   } else {
